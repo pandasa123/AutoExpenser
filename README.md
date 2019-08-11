@@ -7,7 +7,7 @@ Using Microsoft Azure, AI / ML, Expense-ly hopes to expedite the expensing proce
 
 **For Employees trying to expense a trip's receipts:**
 - Automatically collect and file an entire trip's receipts
-- Introduce explainability to understand *why* an item wasn't approved 
+- Introduce explainability to understand why an item wasn't approved 
 - Provide transparency in current expense case statuses
 
 **For Account Managers reviewing expense reports:**
@@ -17,7 +17,7 @@ Using Microsoft Azure, AI / ML, Expense-ly hopes to expedite the expensing proce
 
 ## Architecture
 
-![Archictecture](/Architecture.png)
+![Archictecture](/readme-resources/Architecture.png)
 
 **Cloud Architecture**
 - Azure App Services: Scalable, containerised front-end
