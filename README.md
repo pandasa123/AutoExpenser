@@ -26,3 +26,7 @@ Using Microsoft Azure, AI / ML, Expense-ly hopes to expedite the expensing proce
 - Azure Form Recognizer: Managed Computer Vision service to extract data from images
 - Azure Blob Storage: Scalable unstructured data storage for image data
 - Azure Table Storage: Flexible NoSQL database 
+
+## Related Resources
+- [ZenHub board](https://app.zenhub.com/workspaces/expense-ly-5d5044f23cb7066481260b1d/board?repos=201786565) (invitation required)
+- [Azure AI Hackathon](https://azureai.devpost.com)
