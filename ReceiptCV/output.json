@@ -1,0 +1,1255 @@
+{
+	"status": "Succeeded",
+	"recognitionResults": [
+		{
+			"page": 1,
+			"clockwiseOrientation": 2.57,
+			"width": 3024,
+			"height": 4032,
+			"unit": "pixel",
+			"lines": [
+				{
+					"boundingBox": [1160, 424, 2170, 456, 2164, 634, 1154, 603],
+					"text": "Paradies Lagardere",
+					"words": [
+						{
+							"boundingBox": [
+								1183,
+								450,
+								1651,
+								466,
+								1651,
+								619,
+								1180,
+								573
+							],
+							"text": "Paradies"
+						},
+						{
+							"boundingBox": [
+								1674,
+								466,
+								2157,
+								456,
+								2162,
+								623,
+								1675,
+								620
+							],
+							"text": "Lagardere"
+						}
+					]
+				},
+				{
+					"boundingBox": [832, 526, 2417, 512, 2419, 720, 833, 735],
+					"text": "# 3187 Second Bar and Kitchen",
+					"words": [
+						{
+							"boundingBox": [
+								859,
+								543,
+								920,
+								551,
+								914,
+								652,
+								852,
+								639
+							],
+							"text": "#"
+						},
+						{
+							"boundingBox": [
+								969,
+								557,
+								1196,
+								581,
+								1196,
+								701,
+								964,
+								662
+							],
+							"text": "3187"
+						},
+						{
+							"boundingBox": [
+								1233,
+								584,
+								1573,
+								594,
+								1579,
+								730,
+								1233,
+								707
+							],
+							"text": "Second"
+						},
+						{
+							"boundingBox": [
+								1610,
+								594,
+								1789,
+								588,
+								1799,
+								725,
+								1617,
+								730
+							],
+							"text": "Bar"
+						},
+						{
+							"boundingBox": [
+								1832,
+								585,
+								1999,
+								571,
+								2012,
+								706,
+								1843,
+								722
+							],
+							"text": "and"
+						},
+						{
+							"boundingBox": [
+								2023,
+								568,
+								2396,
+								513,
+								2416,
+								633,
+								2037,
+								703
+							],
+							"text": "Kitchen"
+						}
+					]
+				},
+				{
+					"boundingBox": [815, 661, 2411, 645, 2413, 842, 817, 858],
+					"text": "Austin-Bergstrom Int] Airport",
+					"words": [
+						{
+							"boundingBox": [
+								851,
+								672,
+								1731,
+								727,
+								1739,
+								850,
+								838,
+								778
+							],
+							"text": "Austin-Bergstrom"
+						},
+						{
+							"boundingBox": [
+								1780,
+								724,
+								2002,
+								705,
+								2016,
+								828,
+								1789,
+								847
+							],
+							"text": "Int]",
+							"confidence": "Low"
+						},
+						{
+							"boundingBox": [
+								2022,
+								703,
+								2387,
+								646,
+								2410,
+								765,
+								2037,
+								825
+							],
+							"text": "Airport"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						1378,
+						840,
+						1955,
+						863,
+						1949,
+						1004,
+						1372,
+						981
+					],
+					"text": "Austin, TX",
+					"words": [
+						{
+							"boundingBox": [
+								1386,
+								848,
+								1809,
+								859,
+								1803,
+								997,
+								1382,
+								980
+							],
+							"text": "Austin,",
+							"confidence": "Low"
+						},
+						{
+							"boundingBox": [
+								1835,
+								861,
+								1955,
+								868,
+								1949,
+								1006,
+								1829,
+								999
+							],
+							"text": "TX"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						1328,
+						970,
+						1979,
+						1009,
+						1972,
+						1120,
+						1321,
+						1081
+					],
+					"text": "407-496-1319",
+					"words": [
+						{
+							"boundingBox": [
+								1338,
+								973,
+								1977,
+								1010,
+								1966,
+								1122,
+								1329,
+								1080
+							],
+							"text": "407-496-1319"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						501,
+						1194,
+						1207,
+						1229,
+						1201,
+						1350,
+						495,
+						1314
+					],
+					"text": "3593 Nicolas",
+					"words": [
+						{
+							"boundingBox": [
+								525,
+								1196,
+								774,
+								1208,
+								760,
+								1321,
+								511,
+								1314
+							],
+							"text": "3593"
+						},
+						{
+							"boundingBox": [
+								805,
+								1210,
+								1208,
+								1232,
+								1196,
+								1352,
+								791,
+								1322
+							],
+							"text": "Nicolas"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						2455,
+						1460,
+						2775,
+						1429,
+						2784,
+						1542,
+						2465,
+						1578
+					],
+					"text": "GST 1",
+					"words": [
+						{
+							"boundingBox": [
+								2452,
+								1459,
+								2665,
+								1437,
+								2677,
+								1555,
+								2464,
+								1577
+							],
+							"text": "GST"
+						},
+						{
+							"boundingBox": [
+								2720,
+								1431,
+								2768,
+								1426,
+								2780,
+								1544,
+								2733,
+								1549
+							],
+							"text": "1"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						494,
+						1476,
+						1073,
+						1504,
+						1068,
+						1607,
+						489,
+						1579
+					],
+					"text": "CHK 198364",
+					"words": [
+						{
+							"boundingBox": [
+								494,
+								1478,
+								676,
+								1487,
+								671,
+								1590,
+								490,
+								1581
+							],
+							"text": "CHK"
+						},
+						{
+							"boundingBox": [
+								743,
+								1491,
+								1074,
+								1504,
+								1068,
+								1609,
+								738,
+								1593
+							],
+							"text": "198364"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						1359,
+						1519,
+						1808,
+						1543,
+						1802,
+						1656,
+						1354,
+						1633
+					],
+					"text": "TBL 10/1",
+					"words": [
+						{
+							"boundingBox": [
+								1368,
+								1521,
+								1541,
+								1530,
+								1534,
+								1643,
+								1362,
+								1635
+							],
+							"text": "TBL"
+						},
+						{
+							"boundingBox": [
+								1594,
+								1533,
+								1804,
+								1544,
+								1797,
+								1658,
+								1587,
+								1645
+							],
+							"text": "10/1"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						532,
+						1745,
+						1512,
+						1794,
+						1506,
+						1913,
+						526,
+						1865
+					],
+					"text": "1 CONGRESS BURGER",
+					"words": [
+						{
+							"boundingBox": [
+								543,
+								1747,
+								628,
+								1752,
+								619,
+								1868,
+								534,
+								1865
+							],
+							"text": "1"
+						},
+						{
+							"boundingBox": [
+								651,
+								1754,
+								1140,
+								1780,
+								1130,
+								1892,
+								642,
+								1869
+							],
+							"text": "CONGRESS"
+						},
+						{
+							"boundingBox": [
+								1171,
+								1781,
+								1513,
+								1794,
+								1502,
+								1915,
+								1161,
+								1894
+							],
+							"text": "BURGER"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						2103,
+						1790,
+						2394,
+						1773,
+						2400,
+						1886,
+						2108,
+						1908
+					],
+					"text": "16.00",
+					"words": [
+						{
+							"boundingBox": [
+								2107,
+								1788,
+								2392,
+								1769,
+								2400,
+								1888,
+								2115,
+								1907
+							],
+							"text": "16.00"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						745,
+						1901,
+						1402,
+						1932,
+						1396,
+						2045,
+						740,
+						2014
+					],
+					"text": "MEDIUM RARE",
+					"words": [
+						{
+							"boundingBox": [
+								755,
+								1908,
+								1115,
+								1923,
+								1107,
+								2028,
+								747,
+								2009
+							],
+							"text": "MEDIUM"
+						},
+						{
+							"boundingBox": [
+								1162,
+								1925,
+								1402,
+								1932,
+								1394,
+								2047,
+								1154,
+								2031
+							],
+							"text": "RARE"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						508,
+						2030,
+						1833,
+						2089,
+						1827,
+						2205,
+						502,
+						2146
+					],
+					"text": "1 CAPTAIN MORGAN SPICED",
+					"words": [
+						{
+							"boundingBox": [
+								523,
+								2033,
+								598,
+								2036,
+								596,
+								2151,
+								521,
+								2148
+							],
+							"text": "1"
+						},
+						{
+							"boundingBox": [
+								627,
+								2038,
+								1055,
+								2057,
+								1052,
+								2173,
+								625,
+								2153
+							],
+							"text": "CAPTAIN"
+						},
+						{
+							"boundingBox": [
+								1092,
+								2058,
+								1460,
+								2074,
+								1456,
+								2190,
+								1089,
+								2174
+							],
+							"text": "MORGAN"
+						},
+						{
+							"boundingBox": [
+								1497,
+								2075,
+								1827,
+								2089,
+								1823,
+								2206,
+								1493,
+								2192
+							],
+							"text": "SPICED"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						2101,
+						2080,
+						2394,
+						2076,
+						2393,
+						2203,
+						2102,
+						2201
+					],
+					"text": "10.49",
+					"words": [
+						{
+							"boundingBox": [
+								2100,
+								2075,
+								2388,
+								2075,
+								2388,
+								2202,
+								2100,
+								2202
+							],
+							"text": "10.49",
+							"confidence": "Low"
+						}
+					]
+				},
+				{
+					"boundingBox": [735, 2190, 968, 2201, 961, 2305, 729, 2298],
+					"text": "NEAT",
+					"words": [
+						{
+							"boundingBox": [
+								732,
+								2189,
+								963,
+								2198,
+								959,
+								2306,
+								728,
+								2297
+							],
+							"text": "NEAT"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						481,
+						2319,
+						1088,
+						2338,
+						1084,
+						2458,
+						477,
+						2439
+					],
+					"text": "1 $ DOUBLE",
+					"words": [
+						{
+							"boundingBox": [
+								502,
+								2320,
+								580,
+								2323,
+								572,
+								2443,
+								493,
+								2439
+							],
+							"text": "1"
+						},
+						{
+							"boundingBox": [
+								612,
+								2324,
+								698,
+								2327,
+								690,
+								2447,
+								603,
+								2444
+							],
+							"text": "$"
+						},
+						{
+							"boundingBox": [
+								729,
+								2329,
+								1088,
+								2341,
+								1084,
+								2458,
+								722,
+								2449
+							],
+							"text": "DOUBLE"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						2137,
+						2385,
+						2387,
+						2393,
+						2387,
+						2511,
+						2131,
+						2506
+					],
+					"text": "5.00",
+					"words": [
+						{
+							"boundingBox": [
+								2150,
+								2384,
+								2383,
+								2390,
+								2380,
+								2511,
+								2147,
+								2505
+							],
+							"text": "5.00"
+						}
+					]
+				},
+				{
+					"boundingBox": [584, 2623, 825, 2632, 823, 2747, 579, 2735],
+					"text": "Food",
+					"words": [
+						{
+							"boundingBox": [
+								590,
+								2621,
+								820,
+								2631,
+								815,
+								2746,
+								585,
+								2736
+							],
+							"text": "Food"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						2026,
+						2690,
+						2385,
+						2726,
+						2372,
+						2840,
+						2013,
+						2815
+					],
+					"text": "$16.00",
+					"words": [
+						{
+							"boundingBox": [
+								2031,
+								2689,
+								2382,
+								2719,
+								2372,
+								2845,
+								2020,
+								2815
+							],
+							"text": "$16.00"
+						}
+					]
+				},
+				{
+					"boundingBox": [570, 2768, 931, 2785, 925, 2903, 564, 2886],
+					"text": "Liquor",
+					"words": [
+						{
+							"boundingBox": [
+								579,
+								2771,
+								930,
+								2787,
+								924,
+								2905,
+								572,
+								2887
+							],
+							"text": "Liquor"
+						}
+					]
+				},
+				{
+					"boundingBox": [570, 2919, 759, 2925, 756, 3037, 567, 3028],
+					"text": "Tax",
+					"words": [
+						{
+							"boundingBox": [
+								584,
+								2918,
+								756,
+								2924,
+								752,
+								3036,
+								580,
+								3029
+							],
+							"text": "Tax"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						2021,
+						2844,
+						2376,
+						2884,
+						2367,
+						3008,
+						2005,
+						2976
+					],
+					"text": "$15.49",
+					"words": [
+						{
+							"boundingBox": [
+								2026,
+								2843,
+								2371,
+								2878,
+								2357,
+								3010,
+								2013,
+								2976
+							],
+							"text": "$15.49",
+							"confidence": "Low"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						379,
+						3045,
+						1450,
+						3093,
+						1444,
+						3225,
+						373,
+						3177
+					],
+					"text": "Total Due",
+					"words": [
+						{
+							"boundingBox": [
+								404,
+								3051,
+								983,
+								3074,
+								978,
+								3203,
+								401,
+								3177
+							],
+							"text": "Total",
+							"confidence": "Low"
+						},
+						{
+							"boundingBox": [
+								1099,
+								3079,
+								1430,
+								3093,
+								1423,
+								3226,
+								1093,
+								3208
+							],
+							"text": "Due"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						2077,
+						3004,
+						2371,
+						3048,
+						2352,
+						3177,
+						2053,
+						3137
+					],
+					"text": "$2.60",
+					"words": [
+						{
+							"boundingBox": [
+								2080,
+								3003,
+								2365,
+								3044,
+								2346,
+								3178,
+								2061,
+								3137
+							],
+							"text": "$2.60"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						2004,
+						3143,
+						2759,
+						3281,
+						2732,
+						3430,
+						1977,
+						3292
+					],
+					"text": "$34. 09",
+					"words": [
+						{
+							"boundingBox": [
+								2019,
+								3148,
+								2463,
+								3234,
+								2436,
+								3376,
+								1988,
+								3294
+							],
+							"text": "$34.",
+							"confidence": "Low"
+						},
+						{
+							"boundingBox": [
+								2492,
+								3239,
+								2735,
+								3278,
+								2711,
+								3428,
+								2465,
+								3382
+							],
+							"text": "09"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						365,
+						3391,
+						2686,
+						3732,
+						2648,
+						3993,
+						327,
+						3652
+					],
+					"text": "Tell us about your experience and enter",
+					"words": [
+						{
+							"boundingBox": [
+								355,
+								3523,
+								629,
+								3508,
+								620,
+								3645,
+								351,
+								3654
+							],
+							"text": "Tell"
+						},
+						{
+							"boundingBox": [
+								654,
+								3507,
+								809,
+								3507,
+								796,
+								3647,
+								645,
+								3644
+							],
+							"text": "us"
+						},
+						{
+							"boundingBox": [
+								843,
+								3508,
+								1176,
+								3523,
+								1158,
+								3666,
+								830,
+								3648
+							],
+							"text": "about"
+						},
+						{
+							"boundingBox": [
+								1202,
+								3525,
+								1474,
+								3555,
+								1450,
+								3700,
+								1183,
+								3668
+							],
+							"text": "your"
+						},
+						{
+							"boundingBox": [
+								1500,
+								3559,
+								2071,
+								3673,
+								2036,
+								3814,
+								1475,
+								3703
+							],
+							"text": "experience"
+						},
+						{
+							"boundingBox": [
+								2104,
+								3682,
+								2302,
+								3737,
+								2263,
+								3875,
+								2068,
+								3823
+							],
+							"text": "and"
+						},
+						{
+							"boundingBox": [
+								2343,
+								3749,
+								2667,
+								3860,
+								2621,
+								3991,
+								2303,
+								3886
+							],
+							"text": "enter"
+						}
+					]
+				},
+				{
+					"boundingBox": [
+						355,
+						3567,
+						2529,
+						3836,
+						2500,
+						4032,
+						326,
+						3800
+					],
+					"text": "for a chance to win a $300 GIFT CADDI",
+					"words": [
+						{
+							"boundingBox": [
+								349,
+								3682,
+								549,
+								3668,
+								542,
+								3799,
+								344,
+								3804
+							],
+							"text": "for"
+						},
+						{
+							"boundingBox": [
+								589,
+								3665,
+								669,
+								3661,
+								661,
+								3797,
+								582,
+								3798
+							],
+							"text": "a"
+						},
+						{
+							"boundingBox": [
+								709,
+								3661,
+								1094,
+								3669,
+								1083,
+								3812,
+								701,
+								3797
+							],
+							"text": "chance"
+						},
+						{
+							"boundingBox": [
+								1142,
+								3672,
+								1271,
+								3681,
+								1258,
+								3825,
+								1131,
+								3816
+							],
+							"text": "to"
+						},
+						{
+							"boundingBox": [
+								1310,
+								3686,
+								1509,
+								3713,
+								1495,
+								3854,
+								1297,
+								3830
+							],
+							"text": "win"
+						},
+						{
+							"boundingBox": [
+								1557,
+								3719,
+								1636,
+								3733,
+								1620,
+								3872,
+								1542,
+								3860
+							],
+							"text": "a"
+						},
+						{
+							"boundingBox": [
+								1675,
+								3741,
+								1888,
+								3784,
+								1870,
+								3915,
+								1659,
+								3878
+							],
+							"text": "$300",
+							"confidence": "Low"
+						},
+						{
+							"boundingBox": [
+								1911,
+								3790,
+								2159,
+								3856,
+								2140,
+								3974,
+								1893,
+								3919
+							],
+							"text": "GIFT"
+						},
+						{
+							"boundingBox": [
+								2198,
+								3867,
+								2510,
+								3971,
+								2488,
+								4031,
+								2178,
+								3983
+							],
+							"text": "CADDI",
+							"confidence": "Low"
+						}
+					]
+				}
+			]
+		}
+	],
+	"understandingResults": [
+		{
+			"pages": [1],
+			"fields": {
+				"Subtotal": null,
+				"Total": {
+					"valueType": "numberValue",
+					"value": 34.09,
+					"text": "$34.09",
+					"elements": [
+						{ "$ref": "#/recognitionResults/0/lines/24/words/0" },
+						{ "$ref": "#/recognitionResults/0/lines/24/words/1" }
+					]
+				},
+				"Tax": {
+					"valueType": "numberValue",
+					"value": 2.6,
+					"text": "$2.60",
+					"elements": [
+						{ "$ref": "#/recognitionResults/0/lines/23/words/0" }
+					]
+				},
+				"MerchantAddress": {
+					"valueType": "stringValue",
+					"value": "Austin, TX",
+					"text": "Austin, TX",
+					"elements": [
+						{ "$ref": "#/recognitionResults/0/lines/3/words/0" },
+						{ "$ref": "#/recognitionResults/0/lines/3/words/1" }
+					]
+				},
+				"MerchantName": {
+					"valueType": "stringValue",
+					"value": "Paradies Lagardere # 3187 Second Bar and Kitchen",
+					"text": "Paradies Lagardere # 3187 Second Bar and Kitchen",
+					"elements": [
+						{ "$ref": "#/recognitionResults/0/lines/0/words/0" },
+						{ "$ref": "#/recognitionResults/0/lines/0/words/1" },
+						{ "$ref": "#/recognitionResults/0/lines/1/words/0" },
+						{ "$ref": "#/recognitionResults/0/lines/1/words/1" },
+						{ "$ref": "#/recognitionResults/0/lines/1/words/2" },
+						{ "$ref": "#/recognitionResults/0/lines/1/words/3" },
+						{ "$ref": "#/recognitionResults/0/lines/1/words/4" },
+						{ "$ref": "#/recognitionResults/0/lines/1/words/5" }
+					]
+				},
+				"MerchantPhoneNumber": {
+					"valueType": "stringValue",
+					"value": "+14074961319",
+					"text": "407-496-1319",
+					"elements": [
+						{ "$ref": "#/recognitionResults/0/lines/4/words/0" }
+					]
+				},
+				"TransactionDate": null,
+				"TransactionTime": null
+			}
+		}
+	]
+}
