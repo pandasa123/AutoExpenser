@@ -1,0 +1,11 @@
+{
+	"user_id": "str",
+	"trips": [
+		{
+			"trip_id": "str",
+			"items": [{ "name": "str", "price": "float", "approved": "bool" }],
+			"requested": "float",
+			"approved": "float"
+		}
+	]
+}
