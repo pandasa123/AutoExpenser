@@ -60,7 +60,7 @@ def parse_items(possible_items):
     items = []
     for i in range(len(possible_items)):
         if(is_float(possible_items[i])):
-            items.append({possible_items[i-1]: possible_items[i]})
+            items.append({possible_items[i-1]: float(possible_items[i])})
     return items
 
 
