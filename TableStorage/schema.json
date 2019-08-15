@@ -3,7 +3,14 @@
 	"trips": [
 		{
 			"trip_id": "str",
-			"items": [{ "name": "str", "price": "float", "approved": "bool" }],
+			"receipts": [
+				{
+					"receiptImg": "str",
+					"items": [
+						{ "name": "str", "price": "float", "approved": "bool" }
+					]
+				}
+			],
 			"requested": "float",
 			"approved": "float"
 		}
