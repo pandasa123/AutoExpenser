@@ -1,4 +1,4 @@
-# Expense-ly Auto Expenser
+****# Expense-ly Auto Expenser
 
 ## Overview
 
@@ -26,6 +26,19 @@ Using Microsoft Azure, AI / ML, Expense-ly hopes to expedite the expensing proce
 - Azure Form Recognizer: Managed Computer Vision service to extract data from images
 - Azure Blob Storage: Scalable unstructured data storage for image data
 - Azure Table Storage: Flexible NoSQL database 
+
+
+## ReceiptAnalyser Azure Function Details
+
+URL (`POST` Request)
+```
+https://expensely.azurewebsites.net/api/AnalyseReceiptFromURL?code=gwiCQzozQaMU1gNAXjfsnNiPbk8/6aR8lGTi6tNQpnKXX8SLuNlqNg==
+```
+
+Body (`JSON`)
+```
+{"fileURL": "https://expensely.blob.core.windows.net/test-expensely/IMG_0709.JPG"}
+```
 
 ## Related Resources
 - [ZenHub board](https://app.zenhub.com/workspaces/expense-ly-5d5044f23cb7066481260b1d/board?repos=201786565) (invitation required)
