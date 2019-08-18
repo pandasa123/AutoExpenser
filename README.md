@@ -1,4 +1,4 @@
-****# Expense-ly Auto Expenser
+# Expense-ly Auto Expenser
 
 ## Overview
 
