@@ -29,6 +29,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     receipt_loc = ''
     username = ''
     trip_name = ''
+    blob_name = ''
 
     account_name: str = 'expensely-db'
     account_key: str = 'nSXLSU2AhgZqHCPxmdouuP5uaDApnVuyPihIpoZkf8CbhHFIZNnakSKXObVhumv1ogQJPplSMKFVwvvI0S9adA=='
@@ -41,6 +42,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         receipt_loc = req_body.get('receipt_loc')
         username = req_body.get('username')
         trip_name = req_body.get('trip_name')
+        blob_name = req_body.get('blob_name')
         items = req_body.get('items')
         total = req_body.get('total')
 
@@ -48,7 +50,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
         store_receipt: dict = {
             'PartitionKey': username,
-            'RowKey': receipt_loc,
+            'RowKey': blob_name,
+            'receipt_loc': receipt_loc,
             'trip_name': trip_name,
             'items': str(items),
             'total': total,
