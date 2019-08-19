@@ -9,7 +9,7 @@ import base64
 import time
 
 
-def analyse_receipt(fileURL, headers, endpoint):
+def analyse_receipt(fileURL: str, headers: dict, endpoint: str) -> str:
     """
         Analyse receipt (via URL) and store result in operation-location.
         Needs to be more flexible for batch analysis in the future
@@ -29,7 +29,7 @@ def analyse_receipt(fileURL, headers, endpoint):
     return operationURL
 
 
-def get_analysis_report(operationID, headers, endpoint):
+def get_analysis_report(operationID: str, headers: dict, endpoint: str) -> dict:
     """Gets analysis report json via operationID"""
     conn = http.client.HTTPSConnection(endpoint)
     while True:
@@ -48,7 +48,7 @@ def get_analysis_report(operationID, headers, endpoint):
     return responseDict
 
 
-def is_float(s):
+def is_float(s: str) -> bool:
     """Use float / ValueError to determine if str is float"""
     try:
         float(s)
@@ -57,7 +57,7 @@ def is_float(s):
         return False
 
 
-def parse_items(possible_items):
+def parse_items(possible_items: []) -> []:
     """Parse items from array"""
     items = []
     for i in range(len(possible_items)):
@@ -66,7 +66,7 @@ def parse_items(possible_items):
     return items
 
 
-def get_items_from_receipt_data(data):
+def get_items_from_receipt_data(data: dict) -> []:
     """Get items from json data"""
     possible_items = []
     for line in data['recognitionResults'][0]['lines']:
@@ -75,12 +75,12 @@ def get_items_from_receipt_data(data):
     return parse_items(possible_items)
 
 
-def get_total_from_receipt_data(data):
+def get_total_from_receipt_data(data: dict) -> str:
     """Get total from json data"""
     return data['understandingResults'][0]['fields']['Total']['value']
 
 
-def analysis_engine(endpoint, fileURL, key):
+def analysis_engine(endpoint: str, fileURL: str, key: str) -> dict:
     """
         Get single report per image. We can probably utilse batch by reading the API closer
         Endpoint and key will probably be set in bound parameters
@@ -123,7 +123,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                              key=subscription_key)
 
     if fileURL:
-        return func.HttpResponse(json.dumps(report))
+        return func.HttpResponse(status_code=200, body=json.dumps(report))
     else:
         return func.HttpResponse(
             "Please pass a fileURL in the request body",

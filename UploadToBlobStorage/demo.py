@@ -2,7 +2,6 @@ import os
 import base64
 from azure.storage.blob import BlockBlobService, PublicAccess
 from azure.storage.common.models import ListGenerator as ListGeneratorType
-import tempfile
 
 
 def list_all_blobs(blobService: BlockBlobService) -> []:
