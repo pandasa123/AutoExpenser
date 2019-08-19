@@ -53,8 +53,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     username = ''
     trip_name = ''
 
-    # HOST='https://expensely.azurewebsites.net'
-    HOST='http://localhost:7071'
+    HOST='https://expensely.azurewebsites.net'
+    # HOST='http://localhost:7071'
     
     url: dict = {
         'upload_to_blob': HOST+'/api/UploadToBlobStorage',

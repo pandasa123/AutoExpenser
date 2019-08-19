@@ -2,7 +2,7 @@ import logging
 import azure.functions as func
 import os
 import base64
-from azure.storage.blob import BlockBlobService, PublicAccess
+from azure.storage.blob import BlockBlobService
 from azure.storage.common.models import ListGenerator as ListGeneratorType
 import json
 
@@ -81,3 +81,17 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             "Please pass a base64 encoded img_data and blob_name in the request body",
             status_code=400
         )
+
+
+# if __name__ == "__main__":
+#     account_name: str = 'expensely'
+#     account_key: str = 'eHbEkWQXRR0P8j+qphsOtDG6AT4khzrosvO2uX79TkfGcz2aveuOUUPzP0sYfeDTfB61MDo/jHetnoRy7QGHHw=='
+#     container: str = 'test-expensely'
+
+#     blob_name = 'IMG_0709.jpg'
+#     img_data = img_filesystem_to_bytes('Test/'+blob_name)
+
+#     url = upload_to_blob_storage(account_name=account_name, account_key=account_key,
+#                                  blob_name=blob_name, container_name=container, img_base64=img_data)
+
+#     print(url)
