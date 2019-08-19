@@ -16,12 +16,14 @@ def list_all_blobs(blobService: BlockBlobService, container_name: str) -> []:
     return names
 
 
-def upload_blob(blobService: BlockBlobService, container_name: str, blob_name: str, blob) -> str:
+def upload_blob(blobService: BlockBlobService, container_name: str, blob_name: str, blob: bytes) -> str:
     """Put Blob from base64 into Azure Blob Storage Container and generate URL"""
     blobService.create_blob_from_bytes(
         container_name=container_name, blob_name=blob_name, blob=blob)
+    logging.info('Uploaded Image')
     blob_source_url = blobService.make_blob_url(
         container_name=container_name, blob_name=blob_name)
+    logging.info('Generated Blob URL')
     return blob_source_url
 
 
@@ -35,19 +37,22 @@ def img_filesystem_to_bytes(img: str) -> bytes:
     return encoded_string
 
 
-def base64_to_img(img_base64: str) -> bytes:
+def base64_to_byte_array(img_base64: str) -> bytes:
     """Base64 string to img bytes"""
-    return base64.b64decode(img_base64)
+    return str.encode(img_base64)
 
 
 def upload_to_blob_storage(account_name: str, account_key: str, blob_name: str, container_name: str, img_base64: str) -> str:
     """Upload image into Azure Blob Storage from base64 string"""
     block_blob_service = BlockBlobService(
         account_name=account_name, account_key=account_key)
-    img_file = base64_to_img(img_base64=img_base64)
+    logging.info('Initalised Blob Service')
+    img_bytes: bytes = base64_to_byte_array(img_base64=img_base64)
+
+    logging.info('Captured Image')
     url = upload_blob(blobService=block_blob_service,
                       container_name=container_name,
-                      blob_name=blob_name, blob=img_file)
+                      blob_name=blob_name, blob=img_bytes)
     return url
 
 
@@ -81,17 +86,3 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             "Please pass a base64 encoded img_data and blob_name in the request body",
             status_code=400
         )
-
-
-# if __name__ == "__main__":
-#     account_name: str = 'expensely'
-#     account_key: str = 'eHbEkWQXRR0P8j+qphsOtDG6AT4khzrosvO2uX79TkfGcz2aveuOUUPzP0sYfeDTfB61MDo/jHetnoRy7QGHHw=='
-#     container: str = 'test-expensely'
-
-#     blob_name = 'IMG_0709.jpg'
-#     img_data = img_filesystem_to_bytes('Test/'+blob_name)
-
-#     url = upload_to_blob_storage(account_name=account_name, account_key=account_key,
-#                                  blob_name=blob_name, container_name=container, img_base64=img_data)
-
-#     print(url)
