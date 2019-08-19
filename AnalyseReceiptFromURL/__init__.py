@@ -121,16 +121,17 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     else:
         fileURL = req_body.get('fileURL')
 
-    logging.info('Analysing {}'.format(fileURL))
-    endpoint = r'receiptcv.cognitiveservices.azure.com'
-    subscription_key = r'a9b7738d8ee4489eba0c400015a840c2'
-    report = analysis_engine(endpoint=endpoint,
-                             fileURL=fileURL,
-                             key=subscription_key)
-    logging.info('Generated Report for {}'.format(fileURL))
     if fileURL != '':
+        logging.info('Analysing {}'.format(fileURL))
+        endpoint = r'receiptcv.cognitiveservices.azure.com'
+        subscription_key = r'a9b7738d8ee4489eba0c400015a840c2'
+        report = analysis_engine(endpoint=endpoint,
+                                 fileURL=fileURL,
+                                 key=subscription_key)
+        logging.info('Generated Report for {}'.format(fileURL))
         return func.HttpResponse(status_code=200, body=json.dumps(report))
     else:
+        logging.info('fileURL "{}" invalid'.format(fileURL))
         return func.HttpResponse(
             "Please pass a fileURL in the request body",
             status_code=400
