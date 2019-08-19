@@ -241,7 +241,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
         store_receipt: dict = {
             'PartitionKey': username,
-            'RowKey': blob_name,
+            'RowKey': blob_name+'@'+trip_name,
             'receipt_loc': blob_loc,
             'trip_name': trip_name,
             'items': str(report['items']),
