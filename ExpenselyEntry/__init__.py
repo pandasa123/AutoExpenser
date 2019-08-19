@@ -36,15 +36,30 @@ def call_analysis_service(service_url: str, blob_url: str):
     return body
 
 
+def call_storage_service(service_url: str, username: str, trip_name: str, blob_loc: str, report: dict):
+    """Call Storage Service"""
+    db_store = {"username": username, "trip_name": trip_name, "receipt_loc": blob_loc,
+                "items": report['items'], 'total': report['total']}
+    r = requests.post(url=service_url, json=db_store)
+    body = r.json()
+    return body
+
+
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+    logging.info('Expensely Sequence request.')
 
     img_data = ''
     blob_name = ''
+    username = ''
+    trip_name = ''
 
+    # HOST='https://expensely.azurewebsites.net'
+    HOST='http://localhost:7071'
+    
     url: dict = {
-        'upload_to_blob': 'https://expensely.azurewebsites.net/api/UploadToBlobStorage',
-        'analyse_receipt_from_URL': 'https://expensely.azurewebsites.net/api/AnalyseReceiptFromURL'
+        'upload_to_blob': HOST+'/api/UploadToBlobStorage',
+        'analyse_receipt_from_URL': HOST+'/api/AnalyseReceiptFromURL',
+        'store_into_table': HOST+'/api/StoreIntoTableStorage'
     }
 
     try:
@@ -54,58 +69,22 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     else:
         img_data = req_body.get('img_data')
         blob_name = req_body.get('blob_name')
+        username = req_body.get('username')
+        trip_name = req_body.get('trip_name')
 
-    if img_data != '' and blob_name != '':
+    if img_data != '' and blob_name != '' and username != '' and trip_name != '':
         blob_loc: str = call_upload_service(
             service_url=url['upload_to_blob'], blob_name=blob_name, img_data=img_data)
 
         report = call_analysis_service(
             service_url=url['analyse_receipt_from_URL'], blob_url=blob_loc)
 
-        db_info = {'receipt_loc': blob_loc,
-                   'items': report['items'], 'total': report['total']}
+        table_upload = call_storage_service(
+            service_url=url['store_into_table'], username=username, trip_name=trip_name, blob_loc=blob_loc, report=report)
 
-        return func.HttpResponse(status_code=200, body=json.dumps(db_info))
+        return func.HttpResponse(status_code=200, body=json.dumps(table_upload))
     else:
         return func.HttpResponse(
-            "Please pass a base64 encoded img_data and blob_name in the request body",
+            "Please pass a base64 encoded img_data, blob_name, username, and trip_name in the request body",
             status_code=400
         )
-
-
-# if __name__ == "__main__":
-
-    # HOST = 'https://expensely.azurewebsites.net'
-    # HOST = 'http://localhost:7071'
-    # url: dict = {
-    #     'upload_to_blob': HOST+'/api/UploadToBlobStorage',
-    #     'analyse_receipt_from_URL': HOST+'/api/AnalyseReceiptFromURL'
-    # }
-
-    # filename: str = 'IMG_0710.jpg'
-    # img_data: str = img_filesystem_to_bytes('Test/'+filename)
-
-    # data: dict = {'blob_name': filename, 'img_data': img_data}
-
-    # print('Uploading')
-
-    # blob_loc: str = call_upload_service(
-    #     service_url=url['upload_to_blob'], input_data=data)
-
-    # print('Blob stored at {}'.format(blob_loc))
-    # print('Analysing')
-
-    # report = call_analysis_service(
-    #     service_url=url['analyse_receipt_from_URL'], blob_url=blob_loc)
-
-    # print('Analysis complete')
-
-    # db_info = {'receipt_loc': blob_loc,
-    #            'items': report['items'], 'total': report['total']}
-
-    # db_info = {'receipt_loc': 'https://expensely.blob.core.windows.net/test-expensely/IMG_0710.jpg',
-    #            'items': [{'Austin,': 787119.0}], 'total': 5.99}
-
-    # print(db_info)
-
-    # table_service =
