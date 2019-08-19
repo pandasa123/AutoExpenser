@@ -1,7 +1,7 @@
 {
-    "python.pythonPath": "/Users/pandasa/Documents/AutoExpenser/.env/bin/python3.6",
+    "python.pythonPath": "env/bin/python",
     "azureFunctions.deploySubpath": "AutoExpenser.zip",
-    "azureFunctions.pythonVenv": ".env",
+    "azureFunctions.pythonVenv": "env",
     "azureFunctions.projectLanguage": "Python",
     "azureFunctions.projectRuntime": "~2",
     "debug.internalConsoleOptions": "neverOpen",
