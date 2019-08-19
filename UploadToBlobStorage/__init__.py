@@ -70,11 +70,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         blob_name = req_body.get('blob_name')
 
     if img_data != '' and blob_name != '':
-        logging.info('Uploading {blob_name} to {container}')
+        logging.info('Uploading {} to {}'.format(blob_name, container))
         url = upload_to_blob_storage(account_name=account_name, account_key=account_key,
                                      blob_name=blob_name, container_name=container, img_base64=img_data)
         response_body = {"url": url}
-        logging.info('Uploaded {blob_name} at {url}')
+        logging.info('Uploaded {} at {}'.format(blob_name, url))
         return func.HttpResponse(status_code=200, body=json.dumps(response_body))
     else:
         return func.HttpResponse(
