@@ -108,7 +108,7 @@ def analysis_engine(endpoint: str, fileURL: str, key: str) -> dict:
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+    logging.info('AnalyseReceiptFromURL request')
 
     # fileURL = r'https://expensely.blob.core.windows.net/test-expensely/IMG_0709.JPG'
 
@@ -121,12 +121,13 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     else:
         fileURL = req_body.get('fileURL')
 
+    logging.info('Analysing {fileURL}')
     endpoint = r'receiptcv.cognitiveservices.azure.com'
     subscription_key = r'a9b7738d8ee4489eba0c400015a840c2'
     report = analysis_engine(endpoint=endpoint,
                              fileURL=fileURL,
                              key=subscription_key)
-
+    logging.info('Generated Report for {fileURL}')
     if fileURL != '':
         return func.HttpResponse(status_code=200, body=json.dumps(report))
     else:

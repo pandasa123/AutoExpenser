@@ -52,7 +52,7 @@ def upload_to_blob_storage(account_name: str, account_key: str, blob_name: str, 
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+    logging.info('UploadToBlobStorage Request Made')
 
     account_name: str = 'expensely'
     account_key: str = 'eHbEkWQXRR0P8j+qphsOtDG6AT4khzrosvO2uX79TkfGcz2aveuOUUPzP0sYfeDTfB61MDo/jHetnoRy7QGHHw=='
@@ -70,9 +70,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         blob_name = req_body.get('blob_name')
 
     if img_data != '' and blob_name != '':
+        logging.info('Uploading {blob_name} to {container}')
         url = upload_to_blob_storage(account_name=account_name, account_key=account_key,
                                      blob_name=blob_name, container_name=container, img_base64=img_data)
         response_body = {"url": url}
+        logging.info('Uploaded {blob_name} at {url}')
         return func.HttpResponse(status_code=200, body=json.dumps(response_body))
     else:
         return func.HttpResponse(
