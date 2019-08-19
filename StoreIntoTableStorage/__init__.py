@@ -48,8 +48,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
         store_receipt: dict = {
             'PartitionKey': username,
-            'RowKey': trip_name,
-            'receipt_loc': receipt_loc,
+            'RowKey': receipt_loc,
+            'trip_name': trip_name,
             'items': str(items),
             'total': total,
             'approved': '0',
