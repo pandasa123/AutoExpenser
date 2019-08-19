@@ -61,6 +61,9 @@ def parse_items(possible_items: []) -> []:
     """Parse items from array"""
     items = []
     for i in range(len(possible_items)):
+        # Stop early if we hit "Total"
+        if 'Total' in possible_items[i] or 'total' in possible_items[i]:
+            return items
         if(is_float(possible_items[i])):
             items.append({possible_items[i-1]: float(possible_items[i])})
     return items
@@ -109,6 +112,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     # fileURL = r'https://expensely.blob.core.windows.net/test-expensely/IMG_0709.JPG'
 
+    fileURL = ''
+
     try:
         req_body = req.get_json()
     except ValueError:
@@ -122,7 +127,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                              fileURL=fileURL,
                              key=subscription_key)
 
-    if fileURL:
+    if fileURL != '':
         return func.HttpResponse(status_code=200, body=json.dumps(report))
     else:
         return func.HttpResponse(
