@@ -1,8 +1,7 @@
 import React from 'react'
-import './App.css'
-import { PrimaryButton } from 'office-ui-fabric-react'
 import b2cauth from 'react-azure-adb2c'
 import Layout from './Layout'
+import Card from './Card'
 
 const ContainerStyle = {
 	backgroundColor: '#282c34',
@@ -13,22 +12,12 @@ const ContainerStyle = {
 	justifyContent: 'space-between'
 }
 
-const CardStyle = {
-	backgroundColor: '#C5E2F9',
-	color: 'black',
-	width: '128px',
-	height: '128px',
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-	textAlign: 'center'
-}
-
 const App = () => {
 	return (
 		<Layout layoutStyle={ContainerStyle}>
 			<div style={{ display: 'flex', flexDirection: 'row' }}>
-				<div style={CardStyle}>Create New Report</div>
+				<Card title="Create New Report" />
+				<Card title="JFK" status="Approved" />
 			</div>
 		</Layout>
 	)

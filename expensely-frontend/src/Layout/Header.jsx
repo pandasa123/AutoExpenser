@@ -15,6 +15,7 @@ const HeaderStyle = {
 const Header = () => {
     return (
         <div style={HeaderStyle}>
+            <h1 style={{ fontSize: '24px' }}>Expensely</h1>
             <Button style={{ marginLeft: 'auto' }} onClick={b2cauth.signOut}>Logout</Button>
         </div>
     )

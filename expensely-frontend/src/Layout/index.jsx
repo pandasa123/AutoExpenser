@@ -6,7 +6,7 @@ const Layout = ({ layoutStyle, children }) => {
     return (
         <div style={layoutStyle}>
             <Header />
-            <section style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <section style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '90vh' }}>
                 {children}
             </section>
             <Footer />
