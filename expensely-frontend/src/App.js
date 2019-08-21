@@ -5,7 +5,7 @@ import VerticalCard from './Cards/VerticalCard'
 const App = ({ darkMode = false }) => {
 	let bg = '#faf9f8'
 	if (darkMode) {
-		bg = '#282c34'
+		bg = '#292827'
 	}
 	const ContainerStyle = {
 		backgroundColor: bg,
