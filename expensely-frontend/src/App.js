@@ -1,23 +1,39 @@
 import React from 'react'
-import b2cauth from 'react-azure-adb2c'
 import Layout from './Layout'
-import Card from './Card'
+import CreateNewReport from './Cards/CreateNewReport'
+import ReceiptCard from './Cards/ReceiptCard'
 
-const ContainerStyle = {
-	backgroundColor: '#282c34',
-	minHeight: '100vh',
-	display: 'flex',
-	flexDirection: 'column',
-	color: 'white',
-	justifyContent: 'space-between'
-}
+const App = ({ darkMode = false }) => {
+	let bg = '#faf9f8'
+	if (darkMode) {
+		bg = '#282c34'
+	}
+	const ContainerStyle = {
+		backgroundColor: bg,
+		minHeight: '100vh',
+		display: 'flex',
+		flexDirection: 'column',
+		color: 'white',
+		justifyContent: 'space-between'
+	}
 
-const App = () => {
+	const StyleProps = {
+		size: '160px',
+		margin: '16px'
+	}
+
 	return (
 		<Layout layoutStyle={ContainerStyle}>
 			<div style={{ display: 'flex', flexDirection: 'row' }}>
-				<Card title="Create New Report" />
-				<Card title="JFK" status="Approved" />
+				<CreateNewReport
+					title="Create New Report"
+					styleProps={StyleProps}
+				/>
+				<ReceiptCard
+					title="JFK"
+					styleProps={StyleProps}
+					status="Approved"
+				/>
 			</div>
 		</Layout>
 	)
