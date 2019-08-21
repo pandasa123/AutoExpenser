@@ -6,8 +6,8 @@ const HeaderStyle = {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: '16px',
-    paddingRight: '16px',
+    paddingLeft: '24px',
+    paddingRight: '24px',
     backgroundColor: '#0078D4',
     height: '72px'
 }
