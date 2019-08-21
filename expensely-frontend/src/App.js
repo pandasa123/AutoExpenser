@@ -1,13 +1,17 @@
 import React from 'react'
 import logo from './logo.svg'
 import './App.css'
+import { PrimaryButton } from 'office-ui-fabric-react'
 
 const App = () => {
 	return (
 		<div className="App">
-			<header className="App-header">
+			<header
+				className="App-header"
+				style={{ backgroundColor: '#faf9f8' }}
+			>
 				<img src={logo} className="App-logo" alt="logo" />
-				<p>
+				<p style={{ color: '#000000' }}>
 					Edit <code>src/App.js</code> and save to reload.
 				</p>
 				<a
@@ -18,6 +22,7 @@ const App = () => {
 				>
 					Learn React
 				</a>
+				<PrimaryButton>Microsoft Fabric Button</PrimaryButton>
 			</header>
 		</div>
 	)
