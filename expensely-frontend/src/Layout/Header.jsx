@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'office-ui-fabric-react';
+import { Text, Button } from 'office-ui-fabric-react';
 import b2cauth from 'react-azure-adb2c'
 
 const HeaderStyle = {
@@ -12,10 +12,18 @@ const HeaderStyle = {
     height: '72px'
 }
 
+const logoTextStyle: ITextStyles = {
+    root: {
+        fontWeight: 600
+    }
+}
+
 const Header = () => {
     return (
         <div style={HeaderStyle}>
-            <h1 style={{ fontSize: '24px' }}>Expensely</h1>
+            <Text variant="xLarge" styles={logoTextStyle}>
+                Expensely
+            </Text>
             <Button style={{ marginLeft: 'auto' }} onClick={b2cauth.signOut}>Logout</Button>
         </div>
     )
