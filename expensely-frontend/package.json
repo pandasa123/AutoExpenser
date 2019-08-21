@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@uifabric/react-cards": "^0.107.7",
     "office-ui-fabric-react": "^7.25.1",
     "react": "^16.9.0",
     "react-azure-adb2c": "^0.2.0",
