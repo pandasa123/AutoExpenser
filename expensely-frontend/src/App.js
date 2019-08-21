@@ -1,30 +1,36 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
 import { PrimaryButton } from 'office-ui-fabric-react'
+import b2cauth from 'react-azure-adb2c'
+import Layout from './Layout'
+
+const ContainerStyle = {
+	backgroundColor: '#282c34',
+	minHeight: '100vh',
+	display: 'flex',
+	flexDirection: 'column',
+	color: 'white',
+	justifyContent: 'space-between'
+}
+
+const CardStyle = {
+	backgroundColor: '#C5E2F9',
+	color: 'black',
+	width: '128px',
+	height: '128px',
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	textAlign: 'center'
+}
 
 const App = () => {
 	return (
-		<div className="App">
-			<header
-				className="App-header"
-				style={{ backgroundColor: '#faf9f8' }}
-			>
-				<img src={logo} className="App-logo" alt="logo" />
-				<p style={{ color: '#000000' }}>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-				<PrimaryButton>Microsoft Fabric Button</PrimaryButton>
-			</header>
-		</div>
+		<Layout layoutStyle={ContainerStyle}>
+			<div style={{ display: 'flex', flexDirection: 'row' }}>
+				<div style={CardStyle}>Create New Report</div>
+			</div>
+		</Layout>
 	)
 }
 
