@@ -14,7 +14,8 @@ const HeaderStyle = {
 
 const logoTextStyle: ITextStyles = {
     root: {
-        fontWeight: 600
+        fontWeight: 600,
+        color: '#FFFFFF'
     }
 }
 
@@ -24,6 +25,7 @@ const Header = () => {
             <Text variant="xLarge" styles={logoTextStyle}>
                 Expensely
             </Text>
+
             <DefaultButton style={{ marginLeft: 'auto' }} onClick={b2cauth.signOut}>Logout</DefaultButton>
         </div>
     )

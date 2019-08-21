@@ -1,16 +1,25 @@
-import React from 'react'
-import Header from './Header';
-import Footer from './Footer';
+import React, { useContext } from 'react'
+import Header from './Header'
+import Footer from './Footer'
+import ThemeContext from '../utils/ThemeContext'
 
-const Layout = ({ layoutStyle, children }) => {
+const Layout = ({ children }) => {
+    const themeObject = useContext(ThemeContext)
+
+    let bg = '#faf9f8'
+
+    if (themeObject['theme'] === 'dark') {
+        bg = '#292827'
+    }
+
     return (
-        <div style={layoutStyle}>
+        <>
             <Header />
-            <section style={{ minHeight: '90vh' }}>
+            <section style={{ minHeight: '90vh', backgroundColor: bg }}>
                 {children}
             </section>
             <Footer />
-        </div>
+        </>
     )
 }
 
