@@ -1,47 +1,47 @@
 import React from 'react'
-// import {
-//     PrimaryButton,
-//     DocumentCard,
-//     DocumentCardDetails,
-//     DocumentCardTitle
-// } from 'office-ui-fabric-react'
+import { Card } from '@uifabric/react-cards'
+import {
+    Text,
+    FontWeights
+} from 'office-ui-fabric-react'
 
 
-const CreateNewReport = ({ title, status, styleProps = { size: '128px', margin: '8px' } }) => {
-    let background = '#C5E2F9'
-    // if (status === 'Approved') {
-    //     background = '#DFF6DD'
-    // } else if (status === 'Incomplete') {
-    //     background = '#FFF4CE'
-    // } else if (status === 'Not Reviewed') {
-    //     background = '#FEB2B2'
-    // } 
+const alertClicked = (): void => {
+    alert('Clicked')
+}
 
+const CreateNewReport = () => {
+
+    const cardTokens: ICardTokens = { childrenMargin: 12 }
+
+    const descriptionTextStyles: ITextStyles = {
+        root: {
+            color: '#333333',
+            fontWeight: FontWeights.semibold
+        }
+    }
+
+    const subduedTextStyles: ITextStyles = {
+        root: {
+            color: '#666666'
+        }
+    }
 
     const CardStyle = {
-        backgroundColor: background,
-        color: 'black',
-        width: styleProps.size,
-        height: styleProps.size,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        margin: styleProps.margin
+        backgroundColor: '#eff6fc', minWidth: '286px', minHeight: '323px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center'
     }
 
     return (
-        // <DocumentCard style={CardStyle}>
-        //     <DocumentCardDetails>
-        //         <DocumentCardTitle
-        //             title={title}
-        //             shouldTruncate
-        //         />
-        //     </DocumentCardDetails>
-        // </DocumentCard>
-        <div style={CardStyle}>
-            <h1 style={{ fontWeight: 400 }}>{title}</h1>
-        </div>
+        <Card onClick={alertClicked} tokens={cardTokens} style={CardStyle}>
+            <Card.Section>
+                <Text variant="large" styles={descriptionTextStyles}>
+                    Create New Report
+                </Text>
+                <Text variant="small" styles={subduedTextStyles}>
+                    Expense Your Trip's Receipts
+                </Text>
+            </Card.Section>
+        </Card >
     )
 }
 

@@ -83,7 +83,7 @@ const VerticalCard = ({ month, day, title, subtitle, airport, numItems = 0, numA
     }
 
     return (
-        <Card onClick={alertClicked} tokens={cardTokens} style={{backgroundColor: '#FAF9F8'}}>
+        <Card onClick={alertClicked} tokens={cardTokens} style={{ backgroundColor: '#FAF9F8', minWidth: '286px', minHeight: '323px' }}>
             <Card.Section
                 fill
                 verticalAlign="end"

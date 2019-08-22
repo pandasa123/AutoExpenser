@@ -3,6 +3,7 @@ import Layout from './Layout'
 import VerticalCard from './Cards/VerticalCard'
 import ThemeGenerator from './utils/ThemeGenerator'
 import { ThemeProvider } from './utils/ThemeContext'
+import CreateNewReport from './Cards/CreateNewReport'
 
 const App = () => {
 
@@ -27,6 +28,9 @@ const App = () => {
                         flexWrap: 'wrap'
                     }}
                 >
+                    <div style={{ margin: '12px' }}>
+                        <CreateNewReport />
+                    </div>
                     <div style={{ margin: '12px' }}>
                         <VerticalCard
                             month={'August 2019'}
@@ -71,7 +75,8 @@ const App = () => {
                         />
                     </div>
                 </div>
-            </Layout></ThemeProvider>
+            </Layout>
+        </ThemeProvider>
     )
 }
 
