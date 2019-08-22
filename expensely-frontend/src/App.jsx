@@ -8,8 +8,16 @@ const App = () => {
 
     const [theme, setTheme] = useState(ThemeGenerator)
 
+    const toggleTheme = (currentTheme) => {
+        if (theme === 'dark') {
+            setTheme('light')
+        } else {
+            setTheme('dark')
+        }
+    }
+
     return (
-        <ThemeProvider value={{ theme, setTheme }}>
+        <ThemeProvider value={{ theme, toggleTheme }}>
             <Layout>
                 <div
                     style={{

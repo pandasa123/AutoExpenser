@@ -15,10 +15,11 @@ const ThemeGenerator = () => {
     // 	return 'light'
     // }
 
-    const hour = new Date().getHours()
-    if (hour > 18 || hour < 7) {
-        return 'dark'
-    }
+    // const hour = new Date().getHours()
+    // if (hour > 18 || hour < 7) {
+    //     return 'dark'
+    // }
+    // return 'light'
     return 'light'
 }
 
