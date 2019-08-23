@@ -15,9 +15,9 @@ const Layout = ({ children }) => {
     return (
         <>
             <Header />
-            <section style={{ minHeight: '90vh', backgroundColor: bg }}>
+            <main style={{ minHeight: '90vh', backgroundColor: bg }}>
                 {children}
-            </section>
+            </main>
             <Footer />
         </>
     )

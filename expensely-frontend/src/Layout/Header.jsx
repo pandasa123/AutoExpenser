@@ -30,7 +30,7 @@ const Header = () => {
     const themeObject = useContext(ThemeContext)
 
     return (
-        <div style={HeaderStyle}>
+        <section style={HeaderStyle}>
             <Text variant="xLarge" styles={logoTextStyle}>
                 Expensely
             </Text>
@@ -48,7 +48,7 @@ const Header = () => {
                 </TooltipHost>
                 <DefaultButton onClick={b2cauth.signOut} style={{ marginLeft: '16px' }}>Logout</DefaultButton>
             </div>
-        </div >
+        </section>
     )
 }
 
