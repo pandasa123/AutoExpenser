@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import b2cauth from 'react-azure-adb2c';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import { initializeIcons } from 'office-ui-fabric-react';
 import './index.css';
+
+initializeIcons();
 
 b2cauth.initialize({
   instance: 'https://login.microsoftonline.com/tfp/',
