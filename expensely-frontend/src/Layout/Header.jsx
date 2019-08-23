@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Text, DefaultButton, Toggle, TooltipHost } from 'office-ui-fabric-react';
 import b2cauth from 'react-azure-adb2c'
 import ThemeContext from '../utils/ThemeContext'
+import { Link } from 'react-router-dom'
 
 const HeaderStyle = {
     display: 'flex',
@@ -31,9 +32,11 @@ const Header = () => {
 
     return (
         <section style={HeaderStyle}>
-            <Text variant="xLarge" styles={logoTextStyle}>
-                Expensely
-            </Text>
+            <Link to='/'>
+                <Text variant="xLarge" styles={logoTextStyle}>
+                    Expensely
+                </Text>
+            </Link>
             <div style={ControlStyle}>
                 <TooltipHost
                     content="Toggle for Dark Mode"

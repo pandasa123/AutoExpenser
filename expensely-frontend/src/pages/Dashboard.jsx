@@ -1,7 +1,7 @@
 import React from 'react'
 import CreateNewReport from '../Cards/CreateNewReport'
 import VerticalCard from '../Cards/VerticalCard'
-
+import { Link } from 'react-router-dom'
 
 // TODO: Replace static content
 const Dashboard = () => {
@@ -15,7 +15,9 @@ const Dashboard = () => {
             }}
         >
             <div style={{ margin: '12px' }}>
-                <CreateNewReport />
+                <Link to='/newreport'>
+                    <CreateNewReport />
+                </Link>
             </div>
             <div style={{ margin: '12px' }}>
                 <VerticalCard

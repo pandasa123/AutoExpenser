@@ -6,10 +6,6 @@ import {
 } from 'office-ui-fabric-react'
 
 
-const alertClicked = (): void => {
-    alert('Clicked')
-}
-
 const CreateNewReport = () => {
 
     const cardTokens: ICardTokens = { childrenMargin: 12 }
@@ -32,7 +28,7 @@ const CreateNewReport = () => {
     }
 
     return (
-        <Card onClick={alertClicked} tokens={cardTokens} style={CardStyle}>
+        <Card tokens={cardTokens} style={CardStyle}>
             <Card.Section>
                 <Text variant="large" styles={descriptionTextStyles}>
                     Create New Report

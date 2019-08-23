@@ -27,11 +27,7 @@ const Footer = () => {
         <div style={FooterStyle}>
             <span>
                 <Text variant="mediumPlus" styles={TextStyleSubdued}>Created by </Text>
-                <a href={'https://sanketpanda.com'} style={{
-                    color: 'inherit',
-                    textDecoration: 'inherit'
-                }}
-                >
+                <a href={'https://sanketpanda.com'}>
                     <Text variant="mediumPlus" styles={TextStyleEmphasis}>Sanket Panda</Text>
                 </a>
             </span>
