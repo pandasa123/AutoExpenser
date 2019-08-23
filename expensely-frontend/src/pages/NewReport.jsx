@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, TextField, Calendar } from 'office-ui-fabric-react'
+import { Text, TextField } from 'office-ui-fabric-react'
 
 const NewReport = () => {
     return (
@@ -11,8 +11,8 @@ const NewReport = () => {
         }}>
             <Text variant="xLarge">Create a New Report</Text>
             <br />
-            <TextField label="Trip Name" defaultValue="New Report Name" />
-            
+            <TextField label="Trip Name" placeholder="New Report Name" required />
+            <br />
         </div>
     )
 }
