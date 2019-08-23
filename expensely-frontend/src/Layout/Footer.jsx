@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from 'office-ui-fabric-react'
+import { Text, Link } from 'office-ui-fabric-react'
 
 const FooterStyle = {
     backgroundColor: '#252423',
@@ -27,9 +27,9 @@ const Footer = () => {
         <div style={FooterStyle}>
             <span>
                 <Text variant="mediumPlus" styles={TextStyleSubdued}>Created by </Text>
-                <a href={'https://sanketpanda.com'}>
+                <Link href={'https://sanketpanda.com'}>
                     <Text variant="mediumPlus" styles={TextStyleEmphasis}>Sanket Panda</Text>
-                </a>
+                </Link>
             </span>
         </div >
     )
