@@ -5,9 +5,21 @@ import {
   ITextStyles,
   DatePicker,
   DayOfWeek,
-  IDatePickerStrings
+  IDatePickerStrings,
+  PrimaryButton
 } from 'office-ui-fabric-react';
 import { ThemeContext } from '../utils/ThemeContext';
+// import FileUpload from '../FileUpload';
+import { FilePond, registerPlugin, File } from 'react-filepond';
+// @ts-ignore
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+// @ts-ignore
+import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
+import 'filepond/dist/filepond.min.css';
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
+
+registerPlugin(FilePondPluginFileEncode);
+registerPlugin(FilePondPluginImagePreview);
 
 const DayPickerStrings: IDatePickerStrings = {
   months: [
@@ -64,6 +76,8 @@ const DayPickerStrings: IDatePickerStrings = {
   invalidInputErrorMessage: 'Invalid date format.'
 };
 
+type DateType = Date | null | undefined;
+
 const NewReport = () => {
   const themeObject = useContext(ThemeContext);
 
@@ -79,8 +93,24 @@ const NewReport = () => {
     }
   };
 
-  let startDateValue: Date | null | undefined = null;
-  let endDateValue: Date | null | undefined = null;
+  let tripName: string | undefined = '';
+  let startDateValue: DateType = null;
+  let endDateValue: DateType = null;
+  let fileNames: string[] = [];
+
+  const submitData = () => {
+    const data = {
+      tripName: tripName,
+      startDate: startDateValue,
+      endDate: endDateValue,
+      files: fileNames
+    };
+    console.log(data);
+  };
+
+  const handleFiles = (files: File[]) => {
+    fileNames = files.map(files => files.file.name);
+  };
 
   return (
     <div
@@ -94,10 +124,17 @@ const NewReport = () => {
       <Text styles={TextStyle} variant="xLarge">
         Create a New Report
       </Text>
-      <br />
-      <TextField label="Trip Name" placeholder="New Report Name" required />
-      <br />
-      <div style={{ display: 'flex' }}>
+      <div style={{ paddingTop: '16px' }}>
+        <TextField
+          label="Trip Name"
+          placeholder="New Report Name"
+          required
+          onChange={(e: React.FormEvent, value: string | undefined) => {
+            tripName = value;
+          }}
+        />
+      </div>
+      <div style={{ display: 'flex', paddingTop: '16px' }}>
         <div style={{ marginRight: '12px' }}>
           <DatePicker
             label="Start date"
@@ -105,7 +142,7 @@ const NewReport = () => {
             firstDayOfWeek={DayOfWeek.Sunday}
             strings={DayPickerStrings}
             value={startDateValue!}
-            onSelectDate={date => {
+            onSelectDate={(date: DateType) => {
               startDateValue = date;
             }}
           />
@@ -116,10 +153,29 @@ const NewReport = () => {
           firstDayOfWeek={DayOfWeek.Sunday}
           strings={DayPickerStrings}
           value={endDateValue!}
-          onSelectDate={date => {
+          onSelectDate={(date: DateType) => {
             endDateValue = date;
           }}
         />
+      </div>
+      <div style={{ paddingTop: '32px' }}>
+        <FilePond
+          labelIdle={'Drag & Drop Receipts (JPEG only)'}
+          allowMultiple
+          acceptedFileTypes={['image/jpeg']}
+          onupdatefiles={files => handleFiles(files)}
+        />
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          paddingTop: '32px'
+        }}
+      >
+        <PrimaryButton onClick={submitData}>
+          Finish and Submit Trip
+        </PrimaryButton>
       </div>
     </div>
   );

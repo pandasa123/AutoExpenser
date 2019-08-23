@@ -1421,6 +1421,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-filepond@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@types/react-filepond/-/react-filepond-5.0.3.tgz#2e4b68433e38154317b887712d745cc9fae57512"
+  integrity sha512-hxo3BPZeeG+0E7zOmyvm5q4Sk9dOhbiAQ/0BT9YlLgU16t9Hjf+/iT+mGwFz27QU2yW+7DXj+ZvuoL1b+PBxLw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-router-dom@^4.3.5":
   version "4.3.5"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-4.3.5.tgz#72f229967690c890d00f96e6b85e9ee5780db31f"
@@ -4485,6 +4492,21 @@ file-loader@3.0.1:
   dependencies:
     loader-utils "^1.0.2"
     schema-utils "^1.0.0"
+
+filepond-plugin-file-encode@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/filepond-plugin-file-encode/-/filepond-plugin-file-encode-2.1.4.tgz#18c900ed372f69f028795671a911db9b7f08f9b8"
+  integrity sha512-PM/jPbcHVBxT88aLhtmBAI5+A6a3loi5CTbAWKpiWOU2FcMuhPu0FgBi5ymY/D+Zg4+f/08uLWoXTdWPYFqvlQ==
+
+filepond-plugin-image-preview@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/filepond-plugin-image-preview/-/filepond-plugin-image-preview-4.4.0.tgz#4f8c618ebd899e25fb908f7c081ff2005976b040"
+  integrity sha512-Kx0Sg9+0ob9mbLyyLZWoo9htVzLiiZQzGgqse8NJp9YeQWPiRwkfloHyzw5eAgvtsM3geXJG6QKfi09u/aEVFg==
+
+filepond@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/filepond/-/filepond-4.5.0.tgz#e74113b576a9c2e873fbfcebbfb408d578ae3261"
+  integrity sha512-ICkOPT2bY59danNY6P82okwRTIjq0lO10bsom+wQCsi57WvLCYDAb+GHYay5r62N5xunyqjprdT1K6Jrqc2+Uw==
 
 filesize@3.6.1, filesize@^3.6.0:
   version "3.6.1"
@@ -8929,6 +8951,11 @@ react-error-overlay@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.1.tgz#b8d3cf9bb991c02883225c48044cb3ee20413e0f"
   integrity sha512-V9yoTr6MeZXPPd4nV/05eCBvGH9cGzc52FN8fs0O0TVQ3HYYf1n7EgZVtHbldRq5xU9zEzoXIITjYNIfxDDdUw==
+
+react-filepond@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-filepond/-/react-filepond-7.0.1.tgz#caf96526287140884a31a1476b8328d9d6ecdee2"
+  integrity sha512-PitNM44JP0K5hXnkSYV3HRlkObsWbhqaJRWizMrdHpS3pPz9/iyiOGmRpc+4T4ST3vblmiUTLRYq/+1bDcSqQw==
 
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.9.0"
