@@ -5,7 +5,6 @@ import {
   ITextStyles,
   DatePicker,
   DayOfWeek,
-  IDatePickerStrings,
   PrimaryButton
 } from 'office-ui-fabric-react';
 import { ThemeContext } from '../utils/ThemeContext';
@@ -18,65 +17,19 @@ import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import 'filepond/dist/filepond.min.css';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
 
+import { DayPickerStrings, DateType } from '../utils/DayPickerUtils';
+
 registerPlugin(FilePondPluginFileEncode);
 registerPlugin(FilePondPluginImagePreview);
 
-const DayPickerStrings: IDatePickerStrings = {
-  months: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ],
-
-  shortMonths: [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec'
-  ],
-
-  days: [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday'
-  ],
-
-  shortDays: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-
-  goToToday: 'Go to today',
-  prevMonthAriaLabel: 'Go to previous month',
-  nextMonthAriaLabel: 'Go to next month',
-  prevYearAriaLabel: 'Go to previous year',
-  nextYearAriaLabel: 'Go to next year',
-  closeButtonAriaLabel: 'Close date picker',
-
-  isRequiredErrorMessage: 'Start date is required.',
-
-  invalidInputErrorMessage: 'Invalid date format.'
-};
-
-type DateType = Date | null | undefined;
+interface IDataTypes {
+  tripName: string | undefined;
+  startDate: DateType | null;
+  endDate: DateType | null;
+  files: string[];
+  startingLocation: string | undefined;
+  mainLocation: string | undefined;
+}
 
 const NewReport = () => {
   const themeObject = useContext(ThemeContext);
@@ -97,14 +50,35 @@ const NewReport = () => {
   let startDateValue: DateType = null;
   let endDateValue: DateType = null;
   let fileNames: string[] = [];
+  let startingLocation: string | undefined = '';
+  let mainLocation: string | undefined = '';
 
   const submitData = () => {
-    const data = {
+    const data: IDataTypes = {
       tripName: tripName,
+      startingLocation: startingLocation,
+      mainLocation: mainLocation,
       startDate: startDateValue,
       endDate: endDateValue,
       files: fileNames
     };
+
+    if (data.tripName === '') {
+      alert('Trip Name is required.');
+      return;
+    } else if (data.startDate === null) {
+      alert('Start Date is required.');
+      return;
+    } else if (data.endDate === null) {
+      alert('End Date is required.');
+      return;
+    } else if (data.startingLocation === '') {
+      alert('Starting Location is required.');
+      return;
+    } else if (data.mainLocation === '') {
+      alert('Main Location is required.');
+      return;
+    }
     console.log(data);
   };
 
@@ -155,6 +129,26 @@ const NewReport = () => {
           value={endDateValue!}
           onSelectDate={(date: DateType) => {
             endDateValue = date;
+          }}
+        />
+      </div>
+      <div style={{ display: 'flex', paddingTop: '16px' }}>
+        <div style={{ marginRight: '12px' }}>
+          <TextField
+            label="Starting Location"
+            placeholder="Airport or City"
+            required
+            onChange={(e: React.FormEvent, value: string | undefined) => {
+              startingLocation = value;
+            }}
+          />
+        </div>
+        <TextField
+          label="Event Location"
+          placeholder="Airport or City"
+          required
+          onChange={(e: React.FormEvent, value: string | undefined) => {
+            mainLocation = value;
           }}
         />
       </div>

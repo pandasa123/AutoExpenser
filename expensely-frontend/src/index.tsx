@@ -19,11 +19,18 @@ b2cauth.initialize({
   postLogoutRedirectUri: window.location.origin
 });
 
-b2cauth.run(() => {
-  ReactDOM.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-    document.getElementById('root')
-  );
-});
+// b2cauth.run(() => {
+//   ReactDOM.render(
+//     <BrowserRouter>
+//       <App />
+//     </BrowserRouter>,
+//     document.getElementById('root')
+//   );
+// });
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
+);

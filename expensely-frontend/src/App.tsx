@@ -5,6 +5,10 @@ import ThemeGenerator from './utils/ThemeGenerator';
 import { ThemeProvider } from './utils/ThemeContext';
 import Dashboard from './pages/Dashboard';
 import NewReport from './pages/NewReport';
+// import b2cauth from 'react-azure-adb2c';
+
+// Wrap in Route component
+// b2cauth.required()
 
 const App = () => {
   const [theme, setTheme] = useState(ThemeGenerator);
