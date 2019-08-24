@@ -72,6 +72,7 @@ let startDateValue: DateType = new Date();
 let endDateValue: DateType = new Date();
 let startingLocation: string = '';
 let mainLocation: string = '';
+let blob_name: string = '';
 
 const NewReport = ({ accountIdentifer }: INewReportType) => {
   const [receiptDumpVisibile, setReceiptDumpVisibile] = useState(false);
@@ -211,9 +212,10 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
                 progress,
                 abort
               ) => {
+                blob_name = accountIdentifer + '@' + tripName + '@' + file.name;
                 const blobURL = BlobURL.fromContainerURL(
                   containerURL,
-                  file.name
+                  blob_name
                 );
                 const blockBlobURL = BlockBlobURL.fromBlobURL(blobURL);
                 const uploadBlobResponse = await blockBlobURL.upload(
@@ -227,7 +229,7 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
                   accountID: accountIdentifer,
                   trip_name: tripName,
                   blob_loc: blockBlobURL.url,
-                  blob_name: file.name,
+                  blob_name: blob_name,
                   start_date: startDateValue,
                   end_date: endDateValue,
                   starting_location: startingLocation,
