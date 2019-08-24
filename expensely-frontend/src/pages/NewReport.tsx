@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Text,
   TextField,
@@ -18,11 +18,23 @@ import 'filepond/dist/filepond.min.css';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
 
 import { DayPickerStrings, DateType } from '../utils/DayPickerUtils';
+import {
+  StorageURL,
+  ServiceURL,
+  ContainerURL,
+  BlobURL,
+  BlockBlobURL,
+  Aborter,
+  Credential,
+  Pipeline,
+  AnonymousCredential
+} from '@azure/storage-blob';
 
 registerPlugin(FilePondPluginFileEncode);
 registerPlugin(FilePondPluginImagePreview);
 
 interface IDataTypes {
+  accountID: string;
   tripName: string | undefined;
   startDate: DateType | null;
   endDate: DateType | null;
@@ -35,7 +47,32 @@ interface INewReportType {
   accountIdentifer: string;
 }
 
+const containerName = 'test-expensely';
+
+const anonymousCredential: Credential = new AnonymousCredential();
+
+const pipeline: Pipeline = StorageURL.newPipeline(anonymousCredential);
+
+const serviceURL: ServiceURL = new ServiceURL(
+  `https://expensely.blob.core.windows.net/?sv=2018-03-28&ss=b&srt=sco&sp=rwdlac&se=2019-09-24T19:54:43Z&st=2019-08-24T11:54:43Z&spr=https&sig=L%2FLe0M%2FlkBEt3bofM17O9g8sowtE2ypUE%2Fatvh91yr0%3D`,
+  pipeline
+);
+
+const containerURL: ContainerURL = ContainerURL.fromServiceURL(
+  serviceURL,
+  containerName
+);
+
+let tripName: string = '';
+let startDateValue: DateType = new Date();
+let endDateValue: DateType = new Date();
+let fileNames: string[] = [];
+let startingLocation: string = '';
+let mainLocation: string = '';
+
 const NewReport = ({ accountIdentifer }: INewReportType) => {
+  const [receiptDumpVisibile, setReceiptDumpVisibile] = useState(false);
+
   const themeObject = useContext(ThemeContext);
 
   let textColour = '#000';
@@ -50,15 +87,9 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
     }
   };
 
-  let tripName: string | undefined = '';
-  let startDateValue: DateType = null;
-  let endDateValue: DateType = null;
-  let fileNames: string[] = [];
-  let startingLocation: string | undefined = '';
-  let mainLocation: string | undefined = '';
-
-  const submitData = () => {
+  const checkData = () => {
     const data: IDataTypes = {
+      accountID: accountIdentifer,
       tripName: tripName,
       startingLocation: startingLocation,
       mainLocation: mainLocation,
@@ -83,7 +114,7 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
       alert('Main Location is required.');
       return;
     }
-    console.log(data);
+    setReceiptDumpVisibile(true);
   };
 
   const handleFiles = (files: File[]) => {
@@ -108,7 +139,7 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
           placeholder="New Report Name"
           required
           onChange={(e: React.FormEvent, value: string | undefined) => {
-            tripName = value;
+            tripName = value!;
           }}
         />
       </div>
@@ -143,7 +174,7 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
             placeholder="Airport or City"
             required
             onChange={(e: React.FormEvent, value: string | undefined) => {
-              startingLocation = value;
+              startingLocation = value!;
             }}
           />
         </div>
@@ -152,16 +183,8 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
           placeholder="Airport or City"
           required
           onChange={(e: React.FormEvent, value: string | undefined) => {
-            mainLocation = value;
+            mainLocation = value!;
           }}
-        />
-      </div>
-      <div style={{ paddingTop: '32px' }}>
-        <FilePond
-          labelIdle={'Drag & Drop Receipts (JPEG only)'}
-          allowMultiple
-          acceptedFileTypes={['image/jpeg']}
-          onupdatefiles={files => handleFiles(files)}
         />
       </div>
       <div
@@ -171,9 +194,52 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
           paddingTop: '32px'
         }}
       >
-        <PrimaryButton onClick={submitData}>
-          Finish and Submit Trip
+        <PrimaryButton onClick={checkData}>
+          Next Step: Upload Receipts
         </PrimaryButton>
+      </div>
+      <div style={{ display: receiptDumpVisibile ? 'block' : 'none' }}>
+        <div style={{ paddingTop: '32px' }}>
+          <FilePond
+            labelIdle={'Drag & Drop Receipts (JPEG only)'}
+            allowMultiple
+            acceptedFileTypes={['image/jpeg']}
+            onupdatefiles={files => handleFiles(files)}
+            server={{
+              process: async (
+                fieldName,
+                file,
+                metadata,
+                load,
+                error,
+                progress,
+                abort
+              ) => {
+                const blobURL = BlobURL.fromContainerURL(
+                  containerURL,
+                  file.name
+                );
+                const blockBlobURL = BlockBlobURL.fromBlobURL(blobURL);
+                const uploadBlobResponse = await blockBlobURL.upload(
+                  Aborter.none,
+                  file,
+                  file.size
+                );
+                load(uploadBlobResponse.requestId!);
+              }
+            }}
+            instantUpload={false}
+          />
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            paddingTop: '32px'
+          }}
+        >
+          <PrimaryButton>Finish and Submit Trip</PrimaryButton>
+        </div>
       </div>
     </div>
   );

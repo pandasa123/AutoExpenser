@@ -6,6 +6,7 @@
 	"typings": "src/typings/index",
 	"license": "MIT",
 	"dependencies": {
+		"@azure/storage-blob": "^10.4.0",
 		"@types/es6-promise": "^3.3.0",
 		"@types/jest": "^24.0.18",
 		"@types/markdown-to-jsx": "^6.9.0",
