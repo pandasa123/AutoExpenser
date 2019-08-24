@@ -9,7 +9,7 @@ import {
 } from 'office-ui-fabric-react';
 import { ThemeContext } from '../utils/ThemeContext';
 // import FileUpload from '../FileUpload';
-import { FilePond, registerPlugin, File } from 'react-filepond';
+import { FilePond, registerPlugin } from 'react-filepond';
 // @ts-ignore
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 // @ts-ignore
@@ -33,14 +33,14 @@ import {
 registerPlugin(FilePondPluginFileEncode);
 registerPlugin(FilePondPluginImagePreview);
 
-interface IDataTypes {
+interface IExpenselyDataTypes {
   accountID: string;
-  tripName: string | undefined;
-  startDate: DateType | null;
-  endDate: DateType | null;
-  files: string[];
-  startingLocation: string | undefined;
-  mainLocation: string | undefined;
+  trip_name: string | undefined;
+  blob_loc: string;
+  start_date: DateType | null;
+  end_date: DateType | null;
+  starting_location: string | undefined;
+  main_location: string | undefined;
 }
 
 interface INewReportType {
@@ -66,7 +66,6 @@ const containerURL: ContainerURL = ContainerURL.fromServiceURL(
 let tripName: string = '';
 let startDateValue: DateType = new Date();
 let endDateValue: DateType = new Date();
-let fileNames: string[] = [];
 let startingLocation: string = '';
 let mainLocation: string = '';
 
@@ -88,37 +87,27 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
   };
 
   const checkData = () => {
-    const data: IDataTypes = {
-      accountID: accountIdentifer,
-      tripName: tripName,
-      startingLocation: startingLocation,
-      mainLocation: mainLocation,
-      startDate: startDateValue,
-      endDate: endDateValue,
-      files: fileNames
-    };
-
-    if (data.tripName === '') {
+    if (accountIdentifer === '') {
       alert('Trip Name is required.');
       return;
-    } else if (data.startDate === null) {
+    } else if (startDateValue === null) {
       alert('Start Date is required.');
       return;
-    } else if (data.endDate === null) {
+    } else if (endDateValue === null) {
       alert('End Date is required.');
       return;
-    } else if (data.startingLocation === '') {
+    } else if (startingLocation === '') {
       alert('Starting Location is required.');
       return;
-    } else if (data.mainLocation === '') {
+    } else if (mainLocation === '') {
       alert('Main Location is required.');
       return;
     }
     setReceiptDumpVisibile(true);
   };
 
-  const handleFiles = (files: File[]) => {
-    fileNames = files.map(files => files.file.name);
+  const postToExpensely = (data: IExpenselyDataTypes) => {
+    console.log(data);
   };
 
   return (
@@ -194,7 +183,7 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
           paddingTop: '32px'
         }}
       >
-        <PrimaryButton onClick={checkData}>
+        <PrimaryButton onClick={checkData} disabled={receiptDumpVisibile}>
           Next Step: Upload Receipts
         </PrimaryButton>
       </div>
@@ -204,7 +193,6 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
             labelIdle={'Drag & Drop Receipts (JPEG only)'}
             allowMultiple
             acceptedFileTypes={['image/jpeg']}
-            onupdatefiles={files => handleFiles(files)}
             server={{
               process: async (
                 fieldName,
@@ -226,6 +214,18 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
                   file.size
                 );
                 load(uploadBlobResponse.requestId!);
+
+                const data: IExpenselyDataTypes = {
+                  accountID: accountIdentifer,
+                  trip_name: tripName,
+                  blob_loc: blockBlobURL.url,
+                  start_date: startDateValue,
+                  end_date: endDateValue,
+                  starting_location: startingLocation,
+                  main_location: mainLocation
+                };
+
+                postToExpensely(data);
               }
             }}
             instantUpload={false}
