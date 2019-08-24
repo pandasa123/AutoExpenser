@@ -4,26 +4,25 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { initializeIcons } from 'office-ui-fabric-react';
 import './index.css';
-import { AzureAD } from 'react-aad-msal';
+import { AzureAD, IAccountInfo } from 'react-aad-msal';
 import { AuthProviderFactory } from './utils/AuthProviderFactory';
 
 initializeIcons();
 
-// ReactDOM.render(
-//   <AzureAD provider={AuthProviderFactory} forceLogin={true}>
-//     <BrowserRouter>
-//       <App />
-//     </BrowserRouter>
-//   </AzureAD>,
-//   document.getElementById('root')
-// );
+let accountIdentifier: string = '';
 
 const logoutCallback = (logout: any) => {
   return (
     <BrowserRouter>
-      <App logout={logout} />
+      <App logout={logout} accountIdentifer={accountIdentifier} />
     </BrowserRouter>
   );
+};
+
+const printAccountInfo = (accountInfo: IAccountInfo) => {
+  // console.log(accountInfo.authenticationResponse.account.accountIdentifier);
+  accountIdentifier =
+    accountInfo.authenticationResponse.account.accountIdentifier;
 };
 
 ReactDOM.render(
@@ -31,6 +30,7 @@ ReactDOM.render(
     provider={AuthProviderFactory}
     forceLogin={true}
     authenticatedFunction={logoutCallback}
+    accountInfoCallback={printAccountInfo}
   />,
   document.getElementById('root')
 );

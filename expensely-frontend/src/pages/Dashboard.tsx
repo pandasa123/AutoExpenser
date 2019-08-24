@@ -3,8 +3,12 @@ import CreateNewReport from '../Cards/CreateNewReport';
 import VerticalCard from '../Cards/VerticalCard';
 import { Link } from 'react-router-dom';
 
+interface IDashboardTypes {
+  accountIdentifer: string;
+}
+
 // TODO: Replace static content
-const Dashboard = () => {
+const Dashboard = ({ accountIdentifer }: IDashboardTypes) => {
   return (
     <div
       style={{

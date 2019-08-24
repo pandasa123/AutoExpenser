@@ -31,7 +31,11 @@ interface IDataTypes {
   mainLocation: string | undefined;
 }
 
-const NewReport = () => {
+interface INewReportType {
+  accountIdentifer: string;
+}
+
+const NewReport = ({ accountIdentifer }: INewReportType) => {
   const themeObject = useContext(ThemeContext);
 
   let textColour = '#000';

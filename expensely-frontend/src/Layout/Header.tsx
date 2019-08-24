@@ -34,11 +34,11 @@ const logoTextStyle: ITextStyles = {
   }
 };
 
-interface IHeaderProps {
+interface IHeaderTypes {
   logout: any;
 }
 
-const Header = ({ logout }: IHeaderProps) => {
+const Header = ({ logout }: IHeaderTypes) => {
   const themeObject: IThemeContext = useContext(ThemeContext);
 
   return (

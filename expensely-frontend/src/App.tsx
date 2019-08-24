@@ -6,11 +6,12 @@ import { ThemeProvider } from './utils/ThemeContext';
 import Dashboard from './pages/Dashboard';
 import NewReport from './pages/NewReport';
 
-interface IAppProps {
+interface IAppTypes {
   logout: any;
+  accountIdentifer: string;
 }
 
-const App = ({ logout }: IAppProps) => {
+const App = ({ logout, accountIdentifer }: IAppTypes) => {
   const [theme, setTheme] = useState(ThemeGenerator);
 
   const toggleTheme = (currentTheme: string): void => {
@@ -25,8 +26,23 @@ const App = ({ logout }: IAppProps) => {
     <ThemeProvider value={{ theme, toggleTheme }}>
       <Layout logout={logout}>
         <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route path="/newreport" component={NewReport} />
+          <Route
+            exact
+            path="/"
+            // component={Dashboard}
+            // accountIdentifer={accountIdentifer}
+            render={(routeProps: any) => (
+              <Dashboard {...routeProps} accountIdentifer={accountIdentifer} />
+            )}
+          />
+          <Route
+            path="/newreport"
+            // component={NewReport}
+            // accountIdentifer={accountIdentifer}
+            render={(routeProps: any) => (
+              <NewReport {...routeProps} accountIdentifer={accountIdentifer} />
+            )}
+          />
         </Switch>
       </Layout>
     </ThemeProvider>
