@@ -5,7 +5,8 @@ import {
   ITextStyles,
   DatePicker,
   DayOfWeek,
-  PrimaryButton
+  PrimaryButton,
+  Link
 } from 'office-ui-fabric-react';
 import { ThemeContext } from '../utils/ThemeContext';
 // import FileUpload from '../FileUpload';
@@ -69,7 +70,6 @@ let startDateValue: DateType = new Date();
 let endDateValue: DateType = new Date();
 let startingLocation: string = '';
 let mainLocation: string = '';
-const blob_name: string = '';
 
 const NewReport = ({ accountIdentifer }: INewReportType) => {
   const [receiptDumpVisibile, setReceiptDumpVisibile] = useState(false);
@@ -241,7 +241,9 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
             paddingTop: '32px'
           }}
         >
-          <PrimaryButton>Finish and Submit Trip</PrimaryButton>
+          <Link href={'/'}>
+            <PrimaryButton>Finish and Submit Trip</PrimaryButton>
+          </Link>
         </div>
       </div>
     </div>
