@@ -37,6 +37,7 @@ interface IExpenselyDataTypes {
   accountID: string;
   trip_name: string | undefined;
   blob_loc: string;
+  blob_name: string;
   start_date: DateType | null;
   end_date: DateType | null;
   starting_location: string | undefined;
@@ -68,6 +69,7 @@ let startDateValue: DateType = new Date();
 let endDateValue: DateType = new Date();
 let startingLocation: string = '';
 let mainLocation: string = '';
+const blob_name: string = '';
 
 const NewReport = ({ accountIdentifer }: INewReportType) => {
   const [receiptDumpVisibile, setReceiptDumpVisibile] = useState(false);
@@ -219,6 +221,7 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
                   accountID: accountIdentifer,
                   trip_name: tripName,
                   blob_loc: blockBlobURL.url,
+                  blob_name: file.name,
                   start_date: startDateValue,
                   end_date: endDateValue,
                   starting_location: startingLocation,

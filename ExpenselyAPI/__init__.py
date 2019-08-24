@@ -130,60 +130,6 @@ def analysis_engine(endpoint: str, fileURL: str, key: str) -> dict:
     return {"items": items, "total": total}
 
 
-def list_all_blobs(blobService: BlockBlobService, container_name: str) -> []:
-    """Generate list of blob names in Azure Blob Storage Container"""
-    names = []
-    blobs: ListGeneratorType = blobService.list_blobs(container_name)
-    for blob in blobs:
-        names.append(blob.name)
-    return names
-
-
-def base64_to_byte_array(img_base64: str) -> bytes:
-    """Base64 string to img bytes"""
-    if img_base64[0] == 'b' and img_base64[1] == "'":
-        return eval(img_base64)
-
-    img_base64 = "b'"+img_base64+"'"
-    return eval(img_base64)
-
-
-def upload_file_from_bytes(img: bytes, blobService: BlockBlobService, container_name: str, blob_name: str) -> str:
-    import os
-    import tempfile
-
-    fd, path = tempfile.mkstemp()
-    with os.fdopen(fd, 'wb') as tmp:
-        tmp.write(base64.b64decode(img))
-
-    url = upload_file(blobService=blobService,
-                      container_name=container_name, blob_name=blob_name, path=path)
-    os.remove(path)
-    return url
-
-
-def upload_file(blobService: BlockBlobService, container_name: str, blob_name: str, path: str) -> str:
-    blobService.create_blob_from_path(
-        container_name=container_name, blob_name=blob_name, file_path=path)
-
-    logging.info('Uploaded Image')
-    blob_source_url = blobService.make_blob_url(
-        container_name=container_name, blob_name=blob_name)
-    return blob_source_url
-
-
-def upload_to_blob_storage(account_name: str, account_key: str, blob_name: str, container_name: str, img_base64: str) -> str:
-    """Upload image into Azure Blob Storage from base64 string"""
-    block_blob_service = BlockBlobService(
-        account_name=account_name, account_key=account_key)
-    logging.info('Initalised Blob Service')
-
-    img_bytes: bytes = base64_to_byte_array(img_base64=img_base64)
-    url = upload_file_from_bytes(img=img_bytes, blobService=block_blob_service,
-                                 container_name=container_name, blob_name=blob_name)
-    return url
-
-
 def call_analysis_service(service_url: str, blob_url: str):
     """Call Receipt Analysis microservice and return report"""
     input_data: dict = {'fileURL': blob_url}
@@ -192,9 +138,9 @@ def call_analysis_service(service_url: str, blob_url: str):
     return body
 
 
-def call_storage_service(service_url: str, username: str, trip_name: str, blob_loc: str, report: dict):
+def call_storage_service(service_url: str, accountID: str, trip_name: str, blob_loc: str, report: dict):
     """Call Storage Service"""
-    db_store = {"username": username, "trip_name": trip_name, "receipt_loc": blob_loc,
+    db_store = {"accountID": accountID, "trip_name": trip_name, "receipt_loc": blob_loc,
                 "items": report['items'], 'total': report['total']}
     r = requests.post(url=service_url, json=db_store)
     body = r.json()
@@ -204,15 +150,14 @@ def call_storage_service(service_url: str, username: str, trip_name: str, blob_l
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Expensely Sequence request.')
 
-    img_data = ''
-    blob_name = ''
-    username = ''
-    trip_name = ''
-
-    # Blob Storage
-    bs_account_name: str = 'expensely'
-    bs_account_key: str = 'eHbEkWQXRR0P8j+qphsOtDG6AT4khzrosvO2uX79TkfGcz2aveuOUUPzP0sYfeDTfB61MDo/jHetnoRy7QGHHw=='
-    bs_container: str = 'test-expensely'
+    blob_loc: str = ''
+    blob_name: str = ''
+    accountID: str = ''
+    trip_name: str = ''
+    start_date = ''
+    end_date = ''
+    starting_location: str = ''
+    main_location: str = ''
 
     # Computer Vision
     cv_endpoint = r'receiptcv.cognitiveservices.azure.com'
@@ -227,23 +172,29 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     except ValueError:
         pass
     else:
-        img_data = req_body.get('img_data')
+        blob_loc = req_body.get('blob_loc')
         blob_name = req_body.get('blob_name')
-        username = req_body.get('username')
+        accountID = req_body.get('accountID')
         trip_name = req_body.get('trip_name')
+        start_date = req_body.get('start_date')
+        end_date = req_body.get('end_date')
+        starting_location = req_body.get('starting_location')
+        main_location = req_body.get('main_location')
 
-    if img_data != '' and blob_name != '' and username != '' and trip_name != '':
-        blob_loc: str = upload_to_blob_storage(
-            account_name=bs_account_name, account_key=bs_account_key, blob_name=blob_name, container_name=bs_container, img_base64=img_data)
+    if blob_loc != '' and blob_name != '' and accountID != '' and trip_name != '' and start_date != '' and end_date != '' and starting_location != '' and main_location != '':
 
         report = analysis_engine(endpoint=cv_endpoint,
                                  fileURL=blob_loc, key=cv_subscription_key)
 
         store_receipt: dict = {
-            'PartitionKey': username,
+            'PartitionKey': accountID,
             'RowKey': blob_name+'@'+trip_name,
-            'receipt_loc': blob_loc,
+            'blob_loc': blob_loc,
             'trip_name': trip_name,
+            'start_date': start_date,
+            'end_date': end_date,
+            'starting_location': starting_location,
+            'main_location': main_location,
             'items': str(report['items']),
             'total': report['total'],
             'approved': '0',
@@ -256,6 +207,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(status_code=200, body=json.dumps(store_receipt))
     else:
         return func.HttpResponse(
-            "Please pass a base64 encoded img_data, blob_name, username, and trip_name in the request body",
+            "Please pass a blob_loc, blob_name, accountID, trip_name, start_date, end_date, starting_location, main_location in the request body",
             status_code=400
         )
