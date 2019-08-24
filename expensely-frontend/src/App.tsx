@@ -29,16 +29,12 @@ const App = ({ logout, accountIdentifer }: IAppTypes) => {
           <Route
             exact
             path="/"
-            // component={Dashboard}
-            // accountIdentifer={accountIdentifer}
             render={(routeProps: any) => (
               <Dashboard {...routeProps} accountIdentifer={accountIdentifer} />
             )}
           />
           <Route
             path="/newreport"
-            // component={NewReport}
-            // accountIdentifer={accountIdentifer}
             render={(routeProps: any) => (
               <NewReport {...routeProps} accountIdentifer={accountIdentifer} />
             )}
