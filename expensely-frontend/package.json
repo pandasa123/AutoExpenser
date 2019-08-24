@@ -1,55 +1,56 @@
 {
-  "name": "expensely-frontend",
-  "version": "1.0.0",
-  "description": "Frontend for Expensely",
-  "main": "index.js",
-  "typings": "src/typings/index",
-  "license": "MIT",
-  "dependencies": {
-    "@types/es6-promise": "^3.3.0",
-    "@types/jest": "^24.0.18",
-    "@types/markdown-to-jsx": "^6.9.0",
-    "@types/react": "^16.9.2",
-    "@types/react-dom": "^16.9.0",
-    "@types/react-filepond": "^5.0.3",
-    "@types/react-router-dom": "^4.3.5",
-    "@types/webpack-env": "^1.14.0",
-    "@uifabric/react-cards": "^0.107.9",
-    "filepond": "^4.5.0",
-    "filepond-plugin-file-encode": "^2.1.4",
-    "filepond-plugin-image-preview": "^4.4.0",
-    "office-ui-fabric-react": "^7.27.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-filepond": "^7.0.1",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.1.1",
-    "tslib": "^1.10.0"
-  },
-  "devDependencies": {
-    "parcel-bundler": "^1.12.3",
-    "parcel-plugin-bundle-visualiser": "^1.2.0",
-    "tslint": "^5.19.0",
-    "tslint-microsoft-contrib": "^6.2.0",
-    "tslint-react": "^4.0.0",
-    "typescript": "^3.5.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "lint": "tslint --project tsconfig.json --config tslint.json -t stylish -r node_modules/tslint-microsoft-contrib"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "expensely-frontend",
+	"version": "1.0.0",
+	"description": "Frontend for Expensely",
+	"main": "index.js",
+	"typings": "src/typings/index",
+	"license": "MIT",
+	"dependencies": {
+		"@types/es6-promise": "^3.3.0",
+		"@types/jest": "^24.0.18",
+		"@types/markdown-to-jsx": "^6.9.0",
+		"@types/react": "^16.9.2",
+		"@types/react-dom": "^16.9.0",
+		"@types/react-filepond": "^5.0.3",
+		"@types/react-router-dom": "^4.3.5",
+		"@types/webpack-env": "^1.14.0",
+		"@uifabric/react-cards": "^0.107.9",
+		"filepond": "^4.5.0",
+		"filepond-plugin-file-encode": "^2.1.4",
+		"filepond-plugin-image-preview": "^4.4.0",
+		"msal": "^0.1.5",
+		"office-ui-fabric-react": "^7.27.1",
+		"react": "^16.9.0",
+		"react-dom": "^16.9.0",
+		"react-filepond": "^7.0.1",
+		"react-router-dom": "^5.0.1",
+		"react-scripts": "^3.1.1",
+		"tslib": "^1.10.0"
+	},
+	"devDependencies": {
+		"parcel-bundler": "^1.12.3",
+		"parcel-plugin-bundle-visualiser": "^1.2.0",
+		"tslint": "^5.19.0",
+		"tslint-microsoft-contrib": "^6.2.0",
+		"tslint-react": "^4.0.0",
+		"typescript": "^3.5.3"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"lint": "tslint --project tsconfig.json --config tslint.json -t stylish -r node_modules/tslint-microsoft-contrib"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }
