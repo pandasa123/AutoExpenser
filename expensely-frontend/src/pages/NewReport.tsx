@@ -31,6 +31,8 @@ import {
   AnonymousCredential
 } from '@azure/storage-blob';
 
+import axios from 'axios';
+
 registerPlugin(FilePondPluginFileEncode);
 registerPlugin(FilePondPluginImagePreview);
 
@@ -108,8 +110,12 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
     setReceiptDumpVisibile(true);
   };
 
-  const postToExpensely = (data: IExpenselyDataTypes) => {
-    console.log(data);
+  const postToExpensely = (bodyData: IExpenselyDataTypes) => {
+    axios
+      .post('https://expensely.azurewebsites.net/api/ExpenselyAPI/', bodyData)
+      .then((res: any) => console.log(res))
+      .catch((err: any) => console.log(err));
+    // console.log(data);
   };
 
   return (

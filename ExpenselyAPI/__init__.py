@@ -4,7 +4,6 @@ import requests
 import logging
 import os
 import base64
-from azure.storage.blob import BlockBlobService
 from azure.storage.common.models import ListGenerator as ListGeneratorType
 import json
 import http.client
