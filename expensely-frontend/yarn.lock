@@ -6993,13 +6993,6 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-msal@^0.1.5:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/msal/-/msal-0.1.9.tgz#9367cfbcc98e9849168264f0430d05c4fa3afa01"
-  integrity sha512-dBEpz4xjBSU4kl9jCqmEmjBOewM67CR+hWGAOTKVDuTOgf29V73vHrOACiGhlMvWv3efNaCQTbj93AxS0bExSg==
-  dependencies:
-    tslib "^1.7.1"
-
 multicast-dns-service-types@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/multicast-dns-service-types/-/multicast-dns-service-types-1.1.0.tgz#899f11d9686e5e05cb91b35d5f0e63b773cfc901"
@@ -8898,13 +8891,6 @@ react-app-polyfill@^1.0.2:
     raf "3.4.1"
     regenerator-runtime "0.13.3"
     whatwg-fetch "3.0.0"
-
-react-azure-adb2c@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/react-azure-adb2c/-/react-azure-adb2c-0.2.0.tgz#ce6c016868b2daed55bb36883fa93833516b709b"
-  integrity sha1-zmwBaGiy2u1VuzaIP6k4M1FrcJs=
-  dependencies:
-    msal "^0.1.5"
 
 react-dev-utils@^9.0.3:
   version "9.0.3"

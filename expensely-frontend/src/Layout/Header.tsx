@@ -6,7 +6,7 @@ import {
   TooltipHost,
   ITextStyles
 } from 'office-ui-fabric-react';
-import b2cauth from 'react-azure-adb2c';
+import authentication from '../utils/adb2c';
 import { ThemeContext, IThemeContext } from '../utils/ThemeContext';
 import { Link } from 'react-router-dom';
 
@@ -55,7 +55,10 @@ const Header = () => {
             onChange={() => themeObject.toggleTheme(themeObject.theme)}
           />
         </TooltipHost>
-        <DefaultButton onClick={b2cauth.signOut} style={{ marginLeft: '16px' }}>
+        <DefaultButton
+          onClick={authentication.signOut}
+          style={{ marginLeft: '16px' }}
+        >
           Logout
         </DefaultButton>
       </div>

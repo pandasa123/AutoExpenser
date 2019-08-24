@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import b2cauth from 'react-azure-adb2c';
+import authentication from './utils/adb2c';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { initializeIcons } from 'office-ui-fabric-react';
@@ -8,7 +8,7 @@ import './index.css';
 
 initializeIcons();
 
-b2cauth.initialize({
+authentication.initialize({
   instance: 'https://login.microsoftonline.com/tfp/',
   tenant: 'expensely.onmicrosoft.com',
   signInPolicy: 'B2C_1_expensely_signup',
@@ -19,18 +19,19 @@ b2cauth.initialize({
   postLogoutRedirectUri: window.location.origin
 });
 
-// b2cauth.run(() => {
-//   ReactDOM.render(
-//     <BrowserRouter>
-//       <App />
-//     </BrowserRouter>,
-//     document.getElementById('root')
-//   );
-// });
+authentication.run(() => {
+  ReactDOM.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+    document.getElementById('root')
+  );
+  console.log(authentication.getUser());
+});
 
-ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById('root')
-);
+// ReactDOM.render(
+//   <BrowserRouter>
+//     <App />
+//   </BrowserRouter>,
+//   document.getElementById('root')
+// );
