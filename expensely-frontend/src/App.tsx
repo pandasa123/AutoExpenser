@@ -5,12 +5,12 @@ import ThemeGenerator from './utils/ThemeGenerator';
 import { ThemeProvider } from './utils/ThemeContext';
 import Dashboard from './pages/Dashboard';
 import NewReport from './pages/NewReport';
-// import b2cauth from 'react-azure-adb2c';
 
-// Wrap in Route component
-// b2cauth.required()
+interface IAppProps {
+  logout: any;
+}
 
-const App = () => {
+const App = ({ logout }: IAppProps) => {
   const [theme, setTheme] = useState(ThemeGenerator);
 
   const toggleTheme = (currentTheme: string): void => {
@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <ThemeProvider value={{ theme, toggleTheme }}>
-      <Layout>
+      <Layout logout={logout}>
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route path="/newreport" component={NewReport} />

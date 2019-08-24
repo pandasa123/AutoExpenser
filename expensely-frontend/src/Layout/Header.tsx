@@ -6,7 +6,8 @@ import {
   TooltipHost,
   ITextStyles
 } from 'office-ui-fabric-react';
-import authentication from '../utils/adb2c';
+// import { AzureAD } from 'react-aad-msal';
+// import authentication from '../utils/adb2c';
 import { ThemeContext, IThemeContext } from '../utils/ThemeContext';
 import { Link } from 'react-router-dom';
 
@@ -33,7 +34,11 @@ const logoTextStyle: ITextStyles = {
   }
 };
 
-const Header = () => {
+interface IHeaderProps {
+  logout: any;
+}
+
+const Header = ({ logout }: IHeaderProps) => {
   const themeObject: IThemeContext = useContext(ThemeContext);
 
   return (
@@ -55,10 +60,7 @@ const Header = () => {
             onChange={() => themeObject.toggleTheme(themeObject.theme)}
           />
         </TooltipHost>
-        <DefaultButton
-          onClick={authentication.signOut}
-          style={{ marginLeft: '16px' }}
-        >
+        <DefaultButton onClick={logout} style={{ marginLeft: '16px' }}>
           Logout
         </DefaultButton>
       </div>
