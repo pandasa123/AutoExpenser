@@ -1,6 +1,5 @@
 import ImageSearchAPIClient from 'azure-cognitiveservices-imagesearch';
 import * as Azure from 'ms-rest-azure';
-// import { Images } from 'azure-cognitiveservices-imagesearch/lib/models';
 
 export const BingImageSearch = async (searchQuery: string) => {
 
@@ -13,7 +12,6 @@ export const BingImageSearch = async (searchQuery: string) => {
   if (imageResults === null) {
     return null;
   } else {
-    console.log(imageResults.value[0].thumbnailUrl);
     return imageResults.value[0].thumbnailUrl;
   }
 };
