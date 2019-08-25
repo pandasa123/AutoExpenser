@@ -10,9 +10,25 @@ def aggregate_by_trip(results) -> dict:
         del result['etag']
         del result['Timestamp']
         if result['trip_name'] in trip_structure:
-            trip_structure[result['trip_name']].append(result)
+            trip_structure[result['trip_name']
+                           ]['approved'] += int(result['approved'])
+            trip_structure[result['trip_name']
+                           ]['items'] += eval(result['items'])
+            trip_structure[result['trip_name']
+                           ]['total'] += float(result['total'])
         else:
-            trip_structure[result['trip_name']] = [result]
+            relevantData = {
+                'PartitionKey': result['PartitionKey'],
+                'approved': int(result['approved']),
+                'start_date': result['start_date'],
+                'end_date': result['end_date'],
+                'starting_location': result['starting_location'],
+                'main_location': result['main_location'],
+                'total': float(result['total']),
+                'items': eval(result['items']),
+                'status': result['status']
+            }
+            trip_structure[result['trip_name']] = relevantData
     return trip_structure
 
 
@@ -71,4 +87,6 @@ if __name__ == "__main__":
     results = get_trip_from_table_storage(account_name=account_name, account_key=account_key, protocol=protocol,
                                           table_endpoint=table_endpoint, accountId=accountId)
     aggregated_results = aggregate_by_trip(results)
-    print(aggregated_results)
+
+    for result in aggregated_results.items():
+        print(result, end='\n\n')
