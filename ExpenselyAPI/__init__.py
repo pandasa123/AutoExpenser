@@ -152,6 +152,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     blob_loc: str = ''
     blob_name: str = ''
     accountID: str = ''
+    company_name: str = ''
     trip_name: str = ''
     start_date = ''
     end_date = ''
@@ -175,12 +176,13 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         blob_name = req_body.get('blob_name')
         accountID = req_body.get('accountID')
         trip_name = req_body.get('trip_name')
+        company_name = req_body.get('company_name')
         start_date = req_body.get('start_date')
         end_date = req_body.get('end_date')
         starting_location = req_body.get('starting_location')
         main_location = req_body.get('main_location')
 
-    if blob_loc != '' and blob_name != '' and accountID != '' and trip_name != '' and start_date != '' and end_date != '' and starting_location != '' and main_location != '':
+    if blob_loc != '' and blob_name != '' and accountID != '' and trip_name != '' and start_date != '' and end_date != '' and starting_location != '' and main_location != '' and company_name != '':
 
         report = analysis_engine(endpoint=cv_endpoint,
                                  fileURL=blob_loc, key=cv_subscription_key)
@@ -190,6 +192,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             'RowKey': blob_name+'@'+trip_name,
             'blob_loc': blob_loc,
             'trip_name': trip_name,
+            'company_name': company_name,
             'start_date': start_date,
             'end_date': end_date,
             'starting_location': starting_location,
@@ -206,6 +209,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(status_code=200, body=json.dumps(store_receipt))
     else:
         return func.HttpResponse(
-            "Please pass a blob_loc, blob_name, accountID, trip_name, start_date, end_date, starting_location, main_location in the request body",
+            "Please pass a blob_loc, blob_name, accountID, trip_name, company_name, start_date, end_date, starting_location, main_location in the request body",
             status_code=400
         )

@@ -39,6 +39,7 @@ registerPlugin(FilePondPluginImagePreview);
 interface IExpenselyDataTypes {
   accountID: string;
   trip_name: string | undefined;
+  company_name: string;
   blob_loc: string;
   blob_name: string;
   start_date: DateType | null;
@@ -72,7 +73,8 @@ let startDateValue: DateType = new Date();
 let endDateValue: DateType = new Date();
 let startingLocation: string = '';
 let mainLocation: string = '';
-let blob_name: string = '';
+let blobName: string = '';
+let companyName: string = '';
 
 const NewReport = ({ accountIdentifer }: INewReportType) => {
   const [receiptDumpVisibile, setReceiptDumpVisibile] = useState(false);
@@ -92,8 +94,11 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
   };
 
   const checkData = () => {
-    if (accountIdentifer === '') {
+    if (tripName === '') {
       alert('Trip Name is required.');
+      return;
+    } else if (companyName === '') {
+      alert('Company Name is required.');
       return;
     } else if (startDateValue === null) {
       alert('Start Date is required.');
@@ -138,6 +143,16 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
           required
           onChange={(e: React.FormEvent, value: string | undefined) => {
             tripName = value!;
+          }}
+        />
+      </div>
+      <div style={{ paddingTop: '16px' }}>
+        <TextField
+          label="Company Name (only Microsoft, IBM, or Google for preview)"
+          placeholder="Company Name"
+          required
+          onChange={(e: React.FormEvent, value: string | undefined) => {
+            companyName = value!;
           }}
         />
       </div>
@@ -212,11 +227,8 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
                 progress,
                 abort
               ) => {
-                blob_name = accountIdentifer + '@' + tripName + '@' + file.name;
-                const blobURL = BlobURL.fromContainerURL(
-                  containerURL,
-                  blob_name
-                );
+                blobName = accountIdentifer + '@' + tripName + '@' + file.name;
+                const blobURL = BlobURL.fromContainerURL(containerURL, blobName);
                 const blockBlobURL = BlockBlobURL.fromBlobURL(blobURL);
                 const uploadBlobResponse = await blockBlobURL.upload(
                   Aborter.none,
@@ -228,8 +240,9 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
                 const data: IExpenselyDataTypes = {
                   accountID: accountIdentifer,
                   trip_name: tripName,
+                  company_name: companyName,
                   blob_loc: blockBlobURL.url,
-                  blob_name: blob_name,
+                  blob_name: blobName,
                   start_date: startDateValue,
                   end_date: endDateValue,
                   starting_location: startingLocation,
