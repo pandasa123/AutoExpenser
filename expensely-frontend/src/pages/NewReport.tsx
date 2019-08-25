@@ -169,7 +169,7 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
         <div style={{ marginRight: '12px' }}>
           <TextField
             label="Starting Location"
-            placeholder="Airport or City"
+            placeholder="City"
             required
             onChange={(e: React.FormEvent, value: string | undefined) => {
               startingLocation = value!;
@@ -178,7 +178,7 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
         </div>
         <TextField
           label="Event Location"
-          placeholder="Airport or City"
+          placeholder="City"
           required
           onChange={(e: React.FormEvent, value: string | undefined) => {
             mainLocation = value!;

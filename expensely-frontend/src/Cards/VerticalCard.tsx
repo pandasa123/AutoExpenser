@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   ICardTokens,
@@ -10,8 +10,12 @@ import {
   FontWeights,
   ActionButton,
   ITextStyles,
-  IButtonStyles
+  IButtonStyles,
+  ShimmerElementsGroup,
+  ShimmerElementType,
+  Shimmer
 } from 'office-ui-fabric-react';
+import { BingImageSearch } from '../utils/BingImageSearch';
 
 const alertClicked = (): void => {
   alert('Clicked');
@@ -25,7 +29,7 @@ interface IVerticalCardTypes {
   airport: string;
   numItems?: number;
   numAccepted?: number;
-  backgroundImageURL?: string;
+  startLocation: string;
 }
 
 const VerticalCard = ({
@@ -36,8 +40,9 @@ const VerticalCard = ({
   airport,
   numItems = 0,
   numAccepted = 0,
-  backgroundImageURL = 'https://images.unsplash.com/photo-1514565131-fce0801e5785?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2532&q=80'
+  startLocation
 }: IVerticalCardTypes) => {
+  const [backgroundImageURL, setBackgroundImageURL] = useState('');
   const cardTokens: ICardTokens = { childrenMargin: 12 };
 
   const backgroundImageCardSectionTokens: ICardSectionTokens = { padding: 12 };
@@ -50,6 +55,10 @@ const VerticalCard = ({
       fontWeight: FontWeights.semibold
     }
   };
+
+  BingImageSearch(startLocation).then((res: any) => {
+    setBackgroundImageURL(res);
+  });
 
   let borderColour = '#F3F2F1';
   if (numAccepted === numItems) {
@@ -108,60 +117,72 @@ const VerticalCard = ({
   };
 
   return (
-    <Card
-      onClick={alertClicked}
-      tokens={cardTokens}
-      style={{
-        backgroundColor: '#FAF9F8',
-        minWidth: '286px',
-        minHeight: '323px'
-      }}
+    <Shimmer
+      isDataLoaded={backgroundImageURL !== ''}
+      customElementsGroup={
+        <ShimmerElementsGroup
+          width={'286px'}
+          height={'323px'}
+          shimmerElements={[
+            { type: ShimmerElementType.line, height: 323, width: 286 }
+          ]}
+        />
+      }
     >
-      <Card.Section
-        fill
-        verticalAlign="end"
-        styles={backgroundImageCardSectionStyles}
-        tokens={backgroundImageCardSectionTokens}
+      <Card
+        onClick={alertClicked}
+        tokens={cardTokens}
+        style={{
+          backgroundColor: '#FAF9F8',
+          minWidth: '286px',
+          minHeight: '323px'
+        }}
       >
-        <Text variant="large" styles={dateTextStyles}>
-          {month}
-        </Text>
-        <Text variant="superLarge" styles={dateTextStyles}>
-          {day}
-        </Text>
-      </Card.Section>
-      <Card.Section>
-        <Text variant="small" styles={subduedTextStyles}>
-          {subtitle}
-        </Text>
-        <Text styles={descriptionTextStyles}>{title}</Text>
-      </Card.Section>
-      <Card.Section tokens={agendaCardSectionTokens}>
-        <Text variant="small" styles={descriptionTextStyles}>
-          {numItems} Expensed Items
-        </Text>
-        <Text variant="small" styles={subduedTextStyles}>
-          {airport}
-        </Text>
-      </Card.Section>
-      <Card.Item grow={1}>
-        <span />
-      </Card.Item>
-      <Card.Section
-        horizontal
-        tokens={attendantsCardSectionTokens}
-        styles={footerCardSectionStyles}
-      >
-        <ActionButton
-          text={numAccepted + ' Accepted'}
-          styles={actionButtonStyles}
-        />
-        <ActionButton
-          text={numItems - numAccepted + ' Denied'}
-          styles={actionButtonStyles}
-        />
-      </Card.Section>
-    </Card>
+        <Card.Section
+          fill
+          verticalAlign="end"
+          styles={backgroundImageCardSectionStyles}
+          tokens={backgroundImageCardSectionTokens}
+        >
+          <Text variant="large" styles={dateTextStyles}>
+            {month}
+          </Text>
+          <Text variant="superLarge" styles={dateTextStyles}>
+            {day}
+          </Text>
+        </Card.Section>
+        <Card.Section>
+          <Text variant="small" styles={subduedTextStyles}>
+            {subtitle}
+          </Text>
+          <Text variant="mediumPlus" styles={descriptionTextStyles}>
+            {title}
+          </Text>
+        </Card.Section>
+        <Card.Section tokens={agendaCardSectionTokens}>
+          <Text variant="small" styles={descriptionTextStyles}>
+            {numItems} Expensed Items
+          </Text>
+          <Text variant="small" styles={subduedTextStyles}>
+            {airport}
+          </Text>
+        </Card.Section>
+        <Card.Section
+          horizontal
+          tokens={attendantsCardSectionTokens}
+          styles={footerCardSectionStyles}
+        >
+          <ActionButton
+            text={numAccepted + ' Accepted'}
+            styles={actionButtonStyles}
+          />
+          <ActionButton
+            text={numItems - numAccepted + ' Denied'}
+            styles={actionButtonStyles}
+          />
+        </Card.Section>
+      </Card>
+    </Shimmer>
   );
 };
 

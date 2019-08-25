@@ -9,6 +9,7 @@ import {
   IDataInputType,
   monthNames
 } from '../utils/DashboardHelpers';
+// import { BingImageSearch } from '../utils/BingImageSearch';
 
 const Dashboard = ({ accountIdentifer }: IDashboardTypes) => {
   const [result, setResult] = useState([]);
@@ -42,7 +43,7 @@ const Dashboard = ({ accountIdentifer }: IDashboardTypes) => {
           <VerticalCard
             month={startDateMonth + ' ' + startDate.getFullYear()}
             day={startDateOrdinal}
-            title={tripName}
+            title={tripName + ' in ' + values.starting_location}
             subtitle={
               startDateMonth +
               ' ' +
@@ -52,6 +53,7 @@ const Dashboard = ({ accountIdentifer }: IDashboardTypes) => {
               ' ' +
               endDateOrdinal
             }
+            startLocation={values.starting_location}
             airport={values.starting_location + ' to ' + values.main_location}
             numItems={values.items.length}
             numAccepted={values.approved}
