@@ -29,7 +29,7 @@ interface IVerticalCardTypes {
   airport: string;
   numItems?: number;
   numAccepted?: number;
-  startLocation: string;
+  mainLocation: string;
 }
 
 const VerticalCard = ({
@@ -40,7 +40,7 @@ const VerticalCard = ({
   airport,
   numItems = 0,
   numAccepted = 0,
-  startLocation
+  mainLocation
 }: IVerticalCardTypes) => {
   const [backgroundImageURL, setBackgroundImageURL] = useState('');
   const cardTokens: ICardTokens = { childrenMargin: 12 };
@@ -56,7 +56,7 @@ const VerticalCard = ({
     }
   };
 
-  BingImageSearch(startLocation).then((res: any) => {
+  BingImageSearch(mainLocation).then((res: any) => {
     setBackgroundImageURL(res);
   });
 

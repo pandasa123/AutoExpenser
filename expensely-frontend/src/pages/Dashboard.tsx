@@ -43,7 +43,7 @@ const Dashboard = ({ accountIdentifer }: IDashboardTypes) => {
           <VerticalCard
             month={startDateMonth + ' ' + startDate.getFullYear()}
             day={startDateOrdinal}
-            title={tripName + ' in ' + values.starting_location}
+            title={tripName}
             subtitle={
               startDateMonth +
               ' ' +
@@ -53,7 +53,7 @@ const Dashboard = ({ accountIdentifer }: IDashboardTypes) => {
               ' ' +
               endDateOrdinal
             }
-            startLocation={values.starting_location}
+            mainLocation={values.main_location}
             airport={values.starting_location + ' to ' + values.main_location}
             numItems={values.items.length}
             numAccepted={values.approved}
