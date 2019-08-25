@@ -6,8 +6,8 @@ export const getTripFromTableStorage = async (accountIdentifer: string) => {
   };
 
   const response = await axios.post(
-    // 'https://expensely.azurewebsites.net/api/GetTripFromTableStorage/',
-    'http://localhost:7071/api/GetTripFromTableStorage',
+    'https://expensely.azurewebsites.net/api/GetTripFromTableStorage/',
+    // 'http://localhost:7071/api/GetTripFromTableStorage',
     bodyData
   );
   const data = await response.data;

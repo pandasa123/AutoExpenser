@@ -24,6 +24,7 @@ Using Microsoft Azure, AI / ML, Expense-ly hopes to expedite the expensing proce
 
 - Azure App Services: Scalable, containerised front-end
 - Azure Functions: Serverless, polyglot FaaS backend with federated access management
+- Bing Search API: REST-ful Image Search
 - Azure Cognitive Services: Natural Language Understanding service for entity extraction
 - Azure Form Recognizer: Managed Computer Vision service to extract data from images
 - Azure Blob Storage: Scalable unstructured data storage for image data
@@ -37,19 +38,7 @@ yarn install
 yarn start
 ```
 
-## ReceiptAnalyser Azure Function Details
-
-URL (`POST` Request)
-
-```
-https://expensely.azurewebsites.net/api/AnalyseReceiptFromURL?code=gwiCQzozQaMU1gNAXjfsnNiPbk8/6aR8lGTi6tNQpnKXX8SLuNlqNg==
-```
-
-Body (`JSON`)
-
-```
-{"fileURL": "https://expensely.blob.core.windows.net/test-expensely/IMG_0709.JPG"}
-```
+## Backend Details (TODO)
 
 ## Related Resources
 
