@@ -1,14 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CreateNewReport from '../Cards/CreateNewReport';
 import VerticalCard from '../Cards/VerticalCard';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 interface IDashboardTypes {
   accountIdentifer: string;
 }
 
+const getTripFromTableStorage = async (accountIdentifer: string) => {
+  const bodyData = {
+    accountId: accountIdentifer
+  };
+
+  const response = await axios.post(
+    // 'https://expensely.azurewebsites.net/api/GetTripFromTableStorage/',
+    'http://localhost:7071/api/GetTripFromTableStorage',
+    bodyData
+  );
+  const data = await response.data;
+  return data;
+};
+
 // TODO: Replace static content
 const Dashboard = ({ accountIdentifer }: IDashboardTypes) => {
+  // let result = {};
+  const [result, setResult] = useState(null);
+  useEffect(() => {
+    getTripFromTableStorage(accountIdentifer).then((res: any) => {
+      setResult(res);
+    });
+  }, [accountIdentifer]);
+
+  if (result) {
+    console.log(result);
+  }
+
   return (
     <div
       style={{
@@ -23,6 +50,7 @@ const Dashboard = ({ accountIdentifer }: IDashboardTypes) => {
           <CreateNewReport />
         </Link>
       </div>
+
       <div style={{ margin: '12px' }}>
         <VerticalCard
           month={'August 2019'}

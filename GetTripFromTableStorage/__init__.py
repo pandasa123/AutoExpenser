@@ -7,6 +7,8 @@ from azure.cosmosdb.table.tableservice import TableService
 def aggregate_by_trip(results) -> dict:
     trip_structure = {}
     for result in results:
+        del result['etag']
+        del result['Timestamp']
         if result['trip_name'] in trip_structure:
             trip_structure[result['trip_name']].append(result)
         else:
