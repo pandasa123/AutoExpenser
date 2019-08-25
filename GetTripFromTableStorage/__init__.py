@@ -4,6 +4,12 @@ import azure.functions as func
 from azure.cosmosdb.table.tableservice import TableService
 
 
+def sort_trip(trip_structure: dict) -> dict:
+    sorted_trip = {k: v for k, v in sorted(
+        trip_structure.items(), key=lambda x: x[0][2])}
+    return sorted_trip
+
+
 def aggregate_by_trip(results) -> dict:
     trip_structure = {}
     for result in results:
@@ -45,7 +51,9 @@ def get_trip_from_table_storage(account_name: str, account_key: str, protocol: s
 
     query_string: str = "PartitionKey eq '{accountId}'".format(
         accountId=accountId)
-    return table_service.query_entities(table_name='prod', filter=query_string)
+    result = table_service.query_entities(
+        table_name='prod', filter=query_string)
+    return result
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -68,7 +76,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         results = get_trip_from_table_storage(account_name=account_name, account_key=account_key, protocol=protocol,
                                               table_endpoint=table_endpoint, accountId=accountId)
         aggregated_results = aggregate_by_trip(results)
-        return func.HttpResponse(status_code=200, body=json.dumps(aggregated_results))
+        sorted_results = sort_trip(aggregated_results)
+        return func.HttpResponse(status_code=200, body=json.dumps(sorted_results))
 
     else:
         return func.HttpResponse(
@@ -87,6 +96,5 @@ if __name__ == "__main__":
     results = get_trip_from_table_storage(account_name=account_name, account_key=account_key, protocol=protocol,
                                           table_endpoint=table_endpoint, accountId=accountId)
     aggregated_results = aggregate_by_trip(results)
-
-    for result in aggregated_results.items():
-        print(result, end='\n\n')
+    sorted_results = sort_trip(aggregated_results)
+    print(sorted_results)
