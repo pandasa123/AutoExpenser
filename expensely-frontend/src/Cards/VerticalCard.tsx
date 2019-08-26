@@ -8,18 +8,17 @@ import {
 import {
   Text,
   FontWeights,
+  IconButton,
   ActionButton,
   ITextStyles,
   IButtonStyles,
   ShimmerElementsGroup,
   ShimmerElementType,
-  Shimmer
+  Shimmer,
+  Link
 } from 'office-ui-fabric-react';
 import { BingImageSearch } from '../utils/BingImageSearch';
-
-const alertClicked = (): void => {
-  alert('Clicked');
-};
+import { archiveTripInTableStorage } from '../utils/archiveTripInTableStorage';
 
 interface IVerticalCardTypes {
   month: string;
@@ -30,6 +29,7 @@ interface IVerticalCardTypes {
   numItems?: number;
   numAccepted?: number;
   mainLocation: string;
+  accountIdentifer: string;
 }
 
 const VerticalCard = ({
@@ -40,7 +40,8 @@ const VerticalCard = ({
   airport,
   numItems = 0,
   numAccepted = 0,
-  mainLocation
+  mainLocation,
+  accountIdentifer
 }: IVerticalCardTypes) => {
   const [backgroundImageURL, setBackgroundImageURL] = useState('');
   const cardTokens: ICardTokens = { childrenMargin: 12 };
@@ -72,7 +73,10 @@ const VerticalCard = ({
   const footerCardSectionStyles: ICardSectionStyles = {
     root: {
       borderTop: '1px solid ' + borderColour,
-      paddingTop: '8px'
+      paddingTop: '12px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
     }
   };
   const backgroundImageCardSectionStyles: ICardSectionStyles = {
@@ -130,7 +134,6 @@ const VerticalCard = ({
       }
     >
       <Card
-        onClick={alertClicked}
         tokens={cardTokens}
         style={{
           backgroundColor: '#FAF9F8',
@@ -172,14 +175,31 @@ const VerticalCard = ({
           tokens={attendantsCardSectionTokens}
           styles={footerCardSectionStyles}
         >
-          <ActionButton
-            text={numAccepted + ' Accepted'}
-            styles={actionButtonStyles}
-          />
-          <ActionButton
-            text={numItems - numAccepted + ' Denied'}
-            styles={actionButtonStyles}
-          />
+          <div>
+            <ActionButton
+              text={numAccepted + ' Accepted'}
+              styles={actionButtonStyles}
+            />
+            <ActionButton
+              text={numItems - numAccepted + ' Denied'}
+              styles={actionButtonStyles}
+            />
+          </div>
+          <Link
+            href="/"
+            onClick={() => {
+              archiveTripInTableStorage(title, accountIdentifer);
+            }}
+          >
+            <IconButton
+              iconProps={{ iconName: 'Archive' }}
+              styles={actionButtonStyles}
+            />
+            {/* <IconButton
+              iconProps={{ iconName: 'Delete' }}
+              styles={actionButtonStyles}
+            /> */}
+          </Link>
         </Card.Section>
       </Card>
     </Shimmer>

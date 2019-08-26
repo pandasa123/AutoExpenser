@@ -252,7 +252,7 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
                 postToExpensely(data);
               }
             }}
-            instantUpload={false}
+            instantUpload={true}
           />
         </div>
         <div

@@ -53,6 +53,7 @@ const Dashboard = ({ accountIdentifer }: IDashboardTypes) => {
               ' ' +
               endDateOrdinal
             }
+            accountIdentifer={accountIdentifer}
             mainLocation={values.main_location}
             airport={values.starting_location + ' to ' + values.main_location}
             numItems={values.items.length}
