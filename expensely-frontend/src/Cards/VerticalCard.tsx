@@ -188,7 +188,7 @@ const VerticalCard = ({
           <Link
             href="/"
             onClick={() => {
-              archiveTripInTableStorage(title, accountIdentifer);
+              archiveTripInTableStorage(accountIdentifer, title);
             }}
           >
             <IconButton
