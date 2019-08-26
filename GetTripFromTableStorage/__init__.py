@@ -49,7 +49,7 @@ def get_trip_from_table_storage(account_name: str, account_key: str, protocol: s
     table_service = TableService(endpoint_suffix="table.cosmos.azure.com",
                                  connection_string=connection_string)
 
-    query_string: str = "PartitionKey eq '{accountId}'".format(
+    query_string: str = "PartitionKey eq '{accountId} and status ne 'archived'".format(
         accountId=accountId)
     result = table_service.query_entities(
         table_name='prod', filter=query_string)
