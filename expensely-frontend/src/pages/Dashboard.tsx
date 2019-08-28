@@ -38,6 +38,8 @@ const Dashboard = ({ accountIdentifer }: IDashboardTypes) => {
         parseInt(endDate.toDateString().split(' ')[2], 0)
       );
 
+      console.log(values);
+
       cards.push(
         <div style={{ margin: '12px' }} key={tripName}>
           <VerticalCard
@@ -57,7 +59,9 @@ const Dashboard = ({ accountIdentifer }: IDashboardTypes) => {
             mainLocation={values.main_location}
             airport={values.starting_location + ' to ' + values.main_location}
             numItems={values.items.length}
-            numAccepted={values.approved}
+            total={parseFloat(values.total)}
+            approved={values.approved}
+            status={values.status}
           />
         </div>
       );

@@ -27,7 +27,9 @@ interface IVerticalCardTypes {
   subtitle: string;
   airport: string;
   numItems?: number;
-  numAccepted?: number;
+  total?: number;
+  approved?: number;
+  status: string;
   mainLocation: string;
   accountIdentifer: string;
 }
@@ -39,7 +41,9 @@ const VerticalCard = ({
   subtitle,
   airport,
   numItems = 0,
-  numAccepted = 0,
+  total = 0,
+  approved = 0,
+  status,
   mainLocation,
   accountIdentifer
 }: IVerticalCardTypes) => {
@@ -62,12 +66,10 @@ const VerticalCard = ({
   });
 
   let borderColour = '#F3F2F1';
-  if (numAccepted === numItems) {
-    borderColour = '#107c10';
-  } else if (numAccepted === 0 && numItems > 0) {
+  if (status === 'Not Reviewed') {
     borderColour = '#d83b01';
-  } else if (numAccepted < numItems) {
-    borderColour = '#ffaa44';
+  } else if (status === 'Reviewd') {
+    borderColour = '#107c10';
   }
 
   const footerCardSectionStyles: ICardSectionStyles = {
@@ -177,11 +179,11 @@ const VerticalCard = ({
         >
           <div>
             <ActionButton
-              text={numAccepted + ' Accepted'}
+              text={'Total: $' + total.toFixed(2)}
               styles={actionButtonStyles}
             />
             <ActionButton
-              text={numItems - numAccepted + ' Denied'}
+              text={'Approved: $' + approved.toFixed(2)}
               styles={actionButtonStyles}
             />
           </div>
