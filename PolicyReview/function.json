@@ -1,0 +1,24 @@
+{
+	"scriptFile": "__init__.py",
+	"bindings": [
+		{
+			"type": "cosmosDBTrigger",
+			"name": "documents",
+			"direction": "in",
+			"leaseCollectionName": "leases",
+			"connectionStringSetting": "expensely-db_DOCUMENTDB",
+			"databaseName": "prod",
+			"collectionName": "",
+			"createLeaseCollectionIfNotExists": "true"
+		},
+		{
+			"type": "cosmosDB",
+			"direction": "out",
+			"name": "doc",
+			"databaseName": "prod",
+			"collectionName": "",
+			"createIfNotExists": "true",
+			"connectionStringSetting": "expensely-db_DOCUMENTDB"
+		}
+	]
+}
