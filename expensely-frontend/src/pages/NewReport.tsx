@@ -74,7 +74,7 @@ let endDateValue: DateType = new Date();
 let startingLocation: string = '';
 let mainLocation: string = '';
 let blobName: string = '';
-let companyName: string = '';
+const companyName: string = 'Microsoft';
 
 const NewReport = ({ accountIdentifer }: INewReportType) => {
   const [receiptDumpVisibile, setReceiptDumpVisibile] = useState(false);
@@ -151,9 +151,11 @@ const NewReport = ({ accountIdentifer }: INewReportType) => {
           label="Company Name (only Microsoft, IBM, or Google for preview)"
           placeholder="Company Name"
           required
-          onChange={(e: React.FormEvent, value: string | undefined) => {
-            companyName = value!;
-          }}
+          disabled
+          value="Microsoft"
+          // onChange={(e: React.FormEvent, value: string | undefined) => {
+          //   companyName = value!;
+          // }}
         />
       </div>
       <div style={{ display: 'flex', paddingTop: '16px' }}>

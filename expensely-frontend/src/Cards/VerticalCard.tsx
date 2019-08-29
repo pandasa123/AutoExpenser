@@ -68,7 +68,7 @@ const VerticalCard = ({
   let borderColour = '#F3F2F1';
   if (status === 'Not Reviewed') {
     borderColour = '#d83b01';
-  } else if (status === 'Reviewd') {
+  } else if (status === 'Reviewed') {
     borderColour = '#107c10';
   }
 

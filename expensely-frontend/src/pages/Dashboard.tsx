@@ -9,7 +9,6 @@ import {
   IDataInputType,
   monthNames
 } from '../utils/DashboardHelpers';
-// import { BingImageSearch } from '../utils/BingImageSearch';
 
 const Dashboard = ({ accountIdentifer }: IDashboardTypes) => {
   const [result, setResult] = useState([]);
