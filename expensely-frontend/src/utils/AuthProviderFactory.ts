@@ -9,8 +9,8 @@ const config: Configuration = {
     redirectUri: 'https://expenselyapp.azurewebsites.net'
   },
   cache: {
-    cacheLocation: 'localStorage',
-    storeAuthStateInCookie: true
+    cacheLocation: 'sessionStorage',
+    storeAuthStateInCookie: false
   }
 };
 

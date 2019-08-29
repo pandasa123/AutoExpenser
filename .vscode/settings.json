@@ -5,5 +5,7 @@
     "azureFunctions.projectLanguage": "Python",
     "azureFunctions.projectRuntime": "~2",
     "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.preDeployTask": "func: pack --build-native-deps"
+    "azureFunctions.preDeployTask": "func: pack --build-native-deps",
+    "appService.defaultWebAppToDeploy": "/subscriptions/20c4016b-90e0-476e-94f3-731c0ecb72ac/resourceGroups/Expensely/providers/Microsoft.Web/sites/ExpenselyApp",
+    "appService.deploySubpath": "expensely-frontend"
 }
