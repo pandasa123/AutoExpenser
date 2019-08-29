@@ -146,6 +146,51 @@ def call_storage_service(service_url: str, accountID: str, trip_name: str, blob_
     return body
 
 
+def get_policy_details(company_name: str) -> dict:
+    account_name: str = 'expensely-db'
+    account_key: str = 'nSXLSU2AhgZqHCPxmdouuP5uaDApnVuyPihIpoZkf8CbhHFIZNnakSKXObVhumv1ogQJPplSMKFVwvvI0S9adA=='
+    protocol: str = 'https'
+    table_endpoint: str = 'https://expensely-db.table.cosmos.azure.com:443/'
+
+    table_service = TableService(
+        account_name=account_name, account_key=account_key)
+
+    connection_string = "DefaultEndpointsProtocol={};AccountName={};AccountKey={};TableEndpoint={};".format(
+        protocol, account_name, account_key, table_endpoint)
+
+    table_service = TableService(endpoint_suffix="table.cosmos.azure.com",
+                                 connection_string=connection_string)
+
+    query_string: str = "PartitionKey eq '{company_name}'".format(
+        company_name=company_name)
+    policies = table_service.query_entities(
+        table_name='company-policies', filter=query_string)
+
+    for policy in policies:
+        return policy
+
+    return {}
+
+
+def review_items(items: [], total: float, policy: dict) -> dict:
+    approved_total: float = 0.0
+    num_approved: int = 0
+    if 'max_item_price' in policy:
+        for item in items:
+            for key, value in item.items():
+                if float(policy['max_item_price']) >= value:
+                    num_approved += 1
+                    approved_total += value
+    if 'total_meal_price' in policy:
+        if approved_total > float(policy['total_meal_price']):
+            approved_total = float(policy['total_meal_price'])
+
+    return {
+        'num_approved': num_approved,
+        'approved_total': round(approved_total, 2)
+    }
+
+
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Expensely Sequence request.')
 
@@ -187,6 +232,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         report = analysis_engine(endpoint=cv_endpoint,
                                  fileURL=blob_loc, key=cv_subscription_key)
 
+        company_policy = get_policy_details(company_name=company_name)
+
+        reviewed_items = review_items(
+            items=report['items'], total=report['total'], policy=company_policy)
+
         store_receipt: dict = {
             'PartitionKey': accountID,
             'RowKey': blob_name+'@'+trip_name,
@@ -199,8 +249,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             'main_location': main_location,
             'items': str(report['items']),
             'total': report['total'],
-            'approved': '0',
-            'status': 'Not Reviewed'
+            'approved': (reviewed_items['approved_total']),
+            'num_approved': (reviewed_items['num_approved']),
+            'status': 'Reviewed'
         }
 
         store_in_table_storage(account_name=ts_account_name,
@@ -212,3 +263,54 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             "Please pass a blob_loc, blob_name, accountID, trip_name, company_name, start_date, end_date, starting_location, main_location in the request body",
             status_code=400
         )
+
+
+if __name__ == "__main__":
+
+   # Computer Vision
+    cv_endpoint = r'receiptcv.cognitiveservices.azure.com'
+    cv_subscription_key = r'a9b7738d8ee4489eba0c400015a840c2'
+
+    # Table Storage
+    ts_account_name: str = 'expensely-db'
+    ts_account_key: str = 'nSXLSU2AhgZqHCPxmdouuP5uaDApnVuyPihIpoZkf8CbhHFIZNnakSKXObVhumv1ogQJPplSMKFVwvvI0S9adA=='
+
+    blob_loc = 'https://expensely.blob.core.windows.net/test-expensely/IMG_0709.JPG'
+    blob_name = '62f5f6aa-44ea-41f0-a856-5b80a6120d9f@Production Review@IMG_0705.jpg@Production Review'
+    accountID = '62f5f6aa-44ea-41f0-a856-5b80a6120d9f'
+    trip_name = 'Production Review'
+    company_name = 'Microsoft'
+    start_date = '2019-07-09T04:00:00.000Z'
+    end_date = '2019-07-12T04:00:00.000Z'
+    starting_location = 'Amsterdam'
+    main_location = 'Moscow'
+
+    if blob_loc != '' and blob_name != '' and accountID != '' and trip_name != '' and start_date != '' and end_date != '' and starting_location != '' and main_location != '' and company_name != '':
+
+        report = analysis_engine(endpoint=cv_endpoint,
+                                 fileURL=blob_loc, key=cv_subscription_key)
+
+        company_policy = get_policy_details(company_name=company_name)
+
+        reviewed_items = review_items(
+            items=report['items'], total=report['total'], policy=company_policy)
+
+        store_receipt: dict = {
+            'PartitionKey': accountID,
+            'RowKey': blob_name+'@'+trip_name,
+            'blob_loc': blob_loc,
+            'trip_name': trip_name,
+            'company_name': company_name,
+            'start_date': start_date,
+            'end_date': end_date,
+            'starting_location': starting_location,
+            'main_location': main_location,
+            'items': str(report['items']),
+            'total': report['total'],
+            'approved': (reviewed_items['approved_total']),
+            'num_approved': (reviewed_items['num_approved']),
+            'status': 'Reviewed'
+        }
+        import pprint
+        pp = pprint.PrettyPrinter(indent=2)
+        pp.pprint(store_receipt)

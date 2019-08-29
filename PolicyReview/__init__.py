@@ -29,18 +29,6 @@ def get_policy_details(company_name: str) -> dict:
     return {}
 
 
-def parse_policy(policy: dict) -> dict:
-    policy_string: str = policy['RowKey']
-    policy_arr: [] = policy_string.split(sep=';')
-    policies = {}
-    for policy in policy_arr:
-        policy_details = policy.split(sep='=')
-        if len(policy_details) == 2:
-            policies[policy_details[0]] = policy_details[1]
-
-    return policies
-
-
 def review_items(items: [], total: float, policy: dict) -> dict:
     approved_total: float = 0.0
     num_approved: int = 0
@@ -68,13 +56,13 @@ def main(documents: func.DocumentList, doc: func.Out[func.Document]) -> str:
                 company_name: str = document['company_name']
                 items: [] = eval(document['items'])
                 total: float = float(document['total'])
-                policy_string: dict = get_policy_details(
+                company_policy: dict = get_policy_details(
                     company_name=company_name)
-                if len(policy_string) != 0:
-                    parsed_policy_dict: dict = parse_policy(
-                        policy=policy_string)
+                if len(company_policy) != 0:
                     reviewed: dict = review_items(
-                        items=items, total=total, policy=parsed_policy_dict)
+                        items=items, total=total, policy=company_policy)
+                    print(reviewed)
+
                     del document['etag']
                     del document['Timestamp']
                     document['status'] == 'Reviewed'
@@ -86,11 +74,12 @@ def main(documents: func.DocumentList, doc: func.Out[func.Document]) -> str:
 
 if __name__ == "__main__":
     company_name = 'Microsoft'
-    policy_string: dict = get_policy_details(company_name=company_name)
+    company_policy: dict = get_policy_details(company_name=company_name)
+
     items = [{'1 CONGRESS BURGER': 16.0}, {
         '1 CAPTAIN MORGAN SPICED': 10.49}, {'1 $ DOUBLE': 5.0}]
     total = 34.09
-    if len(policy_string) != 0:
-        parsed_policy_dict: dict = parse_policy(policy=policy_string)
+    if len(company_policy) != 0:
         reviewed: dict = review_items(
-            items=items, total=total, policy=parsed_policy_dict)
+            items=items, total=total, policy=company_policy)
+        print(reviewed)
