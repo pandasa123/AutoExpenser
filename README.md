@@ -1,5 +1,9 @@
 # Expense-ly Auto Expenser
 
+[![Build Status](https://dev.azure.com/Expensely/MyFirstProject/_apis/build/status/expenselyapp%20-%20CI?branchName=master)](https://dev.azure.com/Expensely/MyFirstProject/_build/latest?definitionId=4&branchName=master)
+
+**Live Demo**: https://expenselyapp.azurewebsites.net/
+
 ## Overview
 
 Using Microsoft Azure, AI / ML, Expense-ly hopes to expedite the expensing process for account managers and employees alike.
@@ -25,10 +29,12 @@ Using Microsoft Azure, AI / ML, Expense-ly hopes to expedite the expensing proce
 - Azure App Services: Scalable, containerised front-end
 - Azure Functions: Serverless, polyglot FaaS backend with federated access management
 - Bing Search API: REST-ful Image Search
+- Azure Active Directory B2C: Identity Access Management
 - Azure Cognitive Services: Natural Language Understanding service for entity extraction
 - Azure Form Recognizer: Managed Computer Vision service to extract data from images
 - Azure Blob Storage: Scalable unstructured data storage for image data
 - Azure Table Storage: Flexible NoSQL database
+- Azure DevOPs: CI/CD
 
 ## Build and Run Frontend
 
