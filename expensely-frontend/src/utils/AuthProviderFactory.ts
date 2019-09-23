@@ -5,8 +5,8 @@ const config: Configuration = {
     authority:
       'https://login.microsoftonline.com/tfp/expensely.onmicrosoft.com//B2C_1_expensely_signup',
     clientId: 'ac6588f2-aba7-4638-b015-89ac51cd01d0',
-    redirectUri: 'http://localhost:3000',
-    // redirectUri: 'https://expenselyapp.azurewebsites.net/'
+    // redirectUri: 'http://localhost:3000',
+    redirectUri: 'https://expenselyapp.azurewebsites.net/'
   },
   cache: {
     cacheLocation: 'sessionStorage',
