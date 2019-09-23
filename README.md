@@ -8,6 +8,8 @@
 
 **Video Demo**: https://www.youtube.com/watch?v=vHKd9PtlToU&feature=youtu.be
 
+Please use Chrome!
+
 ## Overview
 
 Using Microsoft Azure, AI / ML, Expensely hopes to expedite the expensing process for account managers and employees alike.
