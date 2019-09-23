@@ -4,35 +4,24 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { initializeIcons } from 'office-ui-fabric-react';
 import './index.css';
-import { AzureAD, IAccountInfo } from 'react-aad-msal';
+import { AzureAD } from 'react-aad-msal';
 import { AuthProviderFactory } from './utils/AuthProviderFactory';
 
 initializeIcons();
 
-let accountIdentifier: string = '';
-
-const logoutCallback = (logout: any) => {
-  return (
-    <BrowserRouter>
-      <App logout={logout} accountIdentifer={accountIdentifier} />
-    </BrowserRouter>
-  );
-};
-
-const printAccountInfo = (accountInfo: IAccountInfo) => {
-  if (accountInfo) {
-    accountIdentifier = accountInfo.account.accountIdentifier;
-    console.log(accountIdentifier);
-  }
-  // accountInfo.authenticationResponse.account.accountIdentifier;
-};
-
 ReactDOM.render(
-  <AzureAD
-    provider={AuthProviderFactory}
-    forceLogin={true}
-    authenticatedFunction={logoutCallback}
-    accountInfoCallback={printAccountInfo}
-  />,
+  <AzureAD provider={AuthProviderFactory} forceLogin={true}>
+    {({ login, logout, authenticationState, accountInfo }: any) => {
+      console.log(accountInfo);
+      return (
+        <BrowserRouter>
+          <App
+            logout={logout}
+            accountIdentifer={accountInfo.account.accountIdentifer}
+          />
+        </BrowserRouter>
+      );
+    }}
+  </AzureAD>,
   document.getElementById('root')
 );
