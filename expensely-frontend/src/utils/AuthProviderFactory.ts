@@ -1,4 +1,4 @@
-import { Configuration, AuthenticationParameters, MsalAuthProviderFactory } from 'react-aad-msal';
+import { Configuration, AuthenticationParameters, MsalAuthProvider } from 'react-aad-msal';
 
 const config: Configuration = {
   auth: {
@@ -18,4 +18,4 @@ const authenticationParameters: AuthenticationParameters = {
   scopes: ['https://expensely.onmicrosoft.com/api/user_impersonation']
 };
 
-export const AuthProviderFactory = new MsalAuthProviderFactory(config, authenticationParameters)
+export const AuthProviderFactory = new MsalAuthProvider(config, authenticationParameters);
