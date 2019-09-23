@@ -20,8 +20,11 @@ const logoutCallback = (logout: any) => {
 };
 
 const printAccountInfo = (accountInfo: IAccountInfo) => {
-  accountIdentifier = accountInfo.account.accountIdentifier;
-    // accountInfo.authenticationResponse.account.accountIdentifier;
+  if (accountInfo) {
+    accountIdentifier = accountInfo.account.accountIdentifier;
+    console.log(accountIdentifier);
+  }
+  // accountInfo.authenticationResponse.account.accountIdentifier;
 };
 
 ReactDOM.render(
