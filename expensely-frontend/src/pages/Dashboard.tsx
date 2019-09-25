@@ -37,7 +37,7 @@ const Dashboard = ({ accountIdentifer }: IDashboardTypes) => {
         parseInt(endDate.toDateString().split(' ')[2], 0)
       );
 
-      // console.log(values);
+      console.log(values);
 
       cards.push(
         <div style={{ margin: '12px' }} key={tripName}>
