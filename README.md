@@ -4,7 +4,7 @@
 
 [![Build Status](https://dev.azure.com/Expensely/MyFirstProject/_apis/build/status/expenselyapp%20-%20CI?branchName=master)](https://dev.azure.com/Expensely/MyFirstProject/_build/latest?definitionId=4&branchName=master)
 
-**Live Demo**: https://expenselyapp.azurewebsites.net/
+**Live Demo**: https://expenselyapp.herokuapp.com
 
 **Video Demo**: https://www.youtube.com/watch?v=vHKd9PtlToU&feature=youtu.be
 

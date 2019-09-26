@@ -133,5 +133,3 @@ AutoExpenser.zip
 # MacOS Garbage
 .DS_Store
 
-# Frontend
-expensely-frontend/node_modules/
