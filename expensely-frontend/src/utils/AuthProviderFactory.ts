@@ -17,4 +17,4 @@ const authenticationParameters: AuthenticationParameters = {
   scopes: ['https://expensely.onmicrosoft.com/api/user_impersonation']
 };
 
-export const AuthProviderFactory = new MsalAuthProvider(config, authenticationParameters, LoginType.Popup);
+export const AuthProviderFactory = new MsalAuthProvider(config, authenticationParameters, LoginType.Redirect);
